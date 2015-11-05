@@ -10,6 +10,11 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 	{
 		// Sql geometry extensions
 
+		/// <summary>
+		/// Computes bounding box of a geometry instance
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns>Array of doubles in this order: xmin, ymin, xmax, ymax</returns>
 		public static double[] BoundingBox(this SqlGeometry geom)
 		{
 			double xmin = Double.MaxValue, ymin = Double.MaxValue, xmax = Double.MinValue, ymax = double.MinValue;
@@ -22,6 +27,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 			return new double[] { xmin, ymin, xmax, ymax };
 		}
+
+		/// <summary>
+		/// Easier to use geometry enumerator than STGeometryN()
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns></returns>
 		public static IEnumerable<SqlGeometry> Geometries(this SqlGeometry geom)
 		{
 			for (int i = 1; i <= geom.STNumGeometries().Value; i++)
@@ -30,6 +41,11 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 		}
 
+		/// <summary>
+		/// Easier to use points enumerator on SqlGeometry
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns></returns>
 		public static IEnumerable<SqlGeometry> Points(this SqlGeometry geom)
 		{
 			for (int i = 1; i <= geom.STNumPoints().Value; i++)
@@ -38,6 +54,11 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 		}
 
+		/// <summary>
+		/// Easier to use interior geometry enumerator on SqlGeometry polygons
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns></returns>
 		public static IEnumerable<SqlGeometry> InteriorRings(this SqlGeometry geom)
 		{
 			for (int i = 1; i <= geom.STNumInteriorRing().Value; i++)
@@ -46,6 +67,11 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 		}
 
+		/// <summary>
+		/// Easier to use MakeValid() that validates only if required
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns></returns>
 		public static SqlGeometry MakeValidIfInvalid(this SqlGeometry geom)
 		{
 			if (geom == null || geom.IsNull)
@@ -54,7 +80,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 
 			// Make valid if necessary
-			if (!geom.STIsValid().IsTrue)
+			if (geom.STIsValid().IsFalse)
 			{
 				return geom.MakeValid();
 			}
@@ -64,7 +90,11 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 
 
 		// Sql geography extensions
-
+		/// <summary>
+		/// Computes bounding box of a geography instance
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns>Array of doubles in this order: xmin, ymin, xmax, ymax</returns>
 		public static double[] BoundingBox(this SqlGeography geom)
 		{
 			double xmin = 180, ymin = 90, xmax = -180, ymax = -90;
@@ -77,6 +107,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 			return new double[] { xmin, ymin, xmax, ymax };
 		}
+
+		/// <summary>
+		/// Easier to use geometry enumerator than STGeometryN()
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns></returns>
 		public static IEnumerable<SqlGeography> Geometries(this SqlGeography geom)
 		{
 			for (int i = 1; i <= geom.STNumGeometries().Value; i++)
@@ -85,6 +121,11 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 		}
 
+		/// <summary>
+		/// Easier to use points enumerator on SqlGeography
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns></returns>
 		public static IEnumerable<SqlGeography> Points(this SqlGeography geom)
 		{
 			for (int i = 1; i <= geom.STNumPoints().Value; i++)
@@ -93,6 +134,11 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 		}
 
+		/// <summary>
+		/// Easier to use MakeValid() that validates only if required
+		/// </summary>
+		/// <param name="geom"></param>
+		/// <returns></returns>
 		public static SqlGeography MakeValidIfInvalid(this SqlGeography geom)
 		{
 			if (geom == null || geom.IsNull)
@@ -101,7 +147,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 
 			// Make valid if necessary
-			if (!geom.STIsValid().IsTrue)
+			if (geom.STIsValid().IsFalse)
 			{
 				return geom.MakeValid();
 			}
