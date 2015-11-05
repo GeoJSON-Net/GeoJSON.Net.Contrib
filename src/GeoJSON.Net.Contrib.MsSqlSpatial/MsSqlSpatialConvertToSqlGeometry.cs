@@ -15,6 +15,15 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 	/// </summary>
 	public static partial class MsSqlSpatialConvert
 	{
+
+		#region GeoJSON to SqlGeometry
+
+		/// <summary>
+		/// Converts a GeoJSON Point to an SqlGeometry
+		/// </summary>
+		/// <param name="point"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static SqlGeometry ToSqlGeometry(this Point point, int srid = 4326)
 		{
 			SqlGeometryBuilder gb = new SqlGeometryBuilder();
@@ -33,6 +42,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			gb.EndGeometry();
 		}
 
+		/// <summary>
+		/// Converts a GeoJSON MultiPoint to an SqlGeometry
+		/// </summary>
+		/// <param name="multiPoint"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static SqlGeometry ToSqlGeometry(this MultiPoint multiPoint, int srid = 4326)
 		{
 			SqlGeometryBuilder gb = new SqlGeometryBuilder();
@@ -55,6 +70,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			gb.EndGeometry();
 		}
 
+		/// <summary>
+		/// Converts a GeoJSON LineString to an SqlGeometry
+		/// </summary>
+		/// <param name="lineString"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static SqlGeometry ToSqlGeometry(this LineString lineString, int srid = 4326)
 		{
 			SqlGeometryBuilder gb = new SqlGeometryBuilder();
@@ -85,6 +106,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			gb.EndGeometry();
 		}
 
+		/// <summary>
+		/// Converts a GeoJSON MultiLineString to an SqlGeometry
+		/// </summary>
+		/// <param name="multiLineString"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static SqlGeometry ToSqlGeometry(this MultiLineString multiLineString, int srid = 4326)
 		{
 			SqlGeometryBuilder gb = new SqlGeometryBuilder();
@@ -118,6 +145,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			gb.EndGeometry();
 		}
 
+		/// <summary>
+		/// Converts a GeoJSON Polygon to an SqlGeometry
+		/// </summary>
+		/// <param name="polygon"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static SqlGeometry ToSqlGeometry(this Polygon polygon, int srid = 4326)
 		{
 			SqlGeometryBuilder gb = new SqlGeometryBuilder();
@@ -149,6 +182,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			gb.EndGeometry();
 		}
 
+		/// <summary>
+		/// Converts a GeoJSON MultiPolygon to an SqlGeometry
+		/// </summary>
+		/// <param name="multiPolygon"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static SqlGeometry ToSqlGeometry(this MultiPolygon multiPolygon, int srid = 4326)
 		{
 			SqlGeometryBuilder gb = new SqlGeometryBuilder();
@@ -171,6 +210,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			gb.EndGeometry();
 		}
 
+		/// <summary>
+		/// Converts a GeoJSON GeometryCollection to an SqlGeometry
+		/// </summary>
+		/// <param name="geometryCollection"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static SqlGeometry ToSqlGeometry(this GeometryCollection geometryCollection, int srid = 4326)
 		{
 			SqlGeometryBuilder gb = new SqlGeometryBuilder();
@@ -206,6 +251,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			return gb.ConstructedGeometry;
 		}
 
+		/// <summary>
+		/// Converts a GeoJSON Feature to an SqlGeometry
+		/// </summary>
+		/// <param name="feature"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static SqlGeometry ToSqlGeometry(this Feature.Feature feature, int srid = 4326)
 		{
 			switch (feature.Geometry.Type)
@@ -233,6 +284,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 		}
 
+		/// <summary>
+		/// Converts a GeoJSON FeatureCollection to a list of SqlGeometry, each SqlGeometry matching each feature in the collection
+		/// </summary>
+		/// <param name="featureCollection"></param>
+		/// <param name="srid"></param>
+		/// <returns></returns>
 		public static List<SqlGeometry> ToSqlGeometry(this FeatureCollection featureCollection, int srid = 4326)
 		{
 			List<SqlGeometry> retList = new List<SqlGeometry>();
@@ -245,19 +302,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			return retList;
 		}
 
-		//public static SqlGeometry ToSqlGeometry<T>(T geoJsonObject, int srid = 0) where T : GeoJSONObject
-		//{
-		//	throw new NotImplementedException();
-		//}
+		#endregion
 
-
-		//public static SqlGeography ToSqlGeography(IGeometryObject geoJsonGeometry)
-		//{
-		//	throw new NotImplementedException();
-		//	//switch(geoJsonGeometry.Type)
-		//	//{
-		//	//	case GeoJSONObjectType.
-		//	//}
-		//}
 	}
 }
