@@ -198,10 +198,51 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 					case GeoJSONObjectType.MultiPolygon:
 						Internal_FillGeometryBuilder(gb, geom as MultiPolygon);
 						break;
+					default:
+						throw new NotSupportedException("Geometry conversion is not supported for " + geom.Type.ToString());
 				}
 			}
 			gb.EndGeometry();
 			return gb.ConstructedGeometry;
+		}
+
+		public static SqlGeometry ToSqlGeometry(this Feature.Feature feature, int srid = 4326)
+		{
+			switch (feature.Geometry.Type)
+			{
+				case GeoJSONObjectType.LineString:
+					return ((LineString)feature.Geometry).ToSqlGeometry(srid);
+
+				case GeoJSONObjectType.MultiLineString:
+					return ((MultiLineString)feature.Geometry).ToSqlGeometry(srid);
+
+				case GeoJSONObjectType.Point:
+					return ((Point)feature.Geometry).ToSqlGeometry(srid);
+
+				case GeoJSONObjectType.MultiPoint:
+					return ((MultiPoint)feature.Geometry).ToSqlGeometry(srid);
+
+				case GeoJSONObjectType.Polygon:
+					return ((Polygon)feature.Geometry).ToSqlGeometry(srid);
+
+				case GeoJSONObjectType.MultiPolygon:
+					return ((MultiPolygon)feature.Geometry).ToSqlGeometry(srid);
+
+				default:
+					throw new NotSupportedException("Geometry conversion is not supported for " + feature.Type.ToString());
+			}
+		}
+
+		public static List<SqlGeometry> ToSqlGeometry(this FeatureCollection featureCollection, int srid = 4326)
+		{
+			List<SqlGeometry> retList = new List<SqlGeometry>();
+			foreach(var feature in featureCollection.Features)
+			{
+				var sqlGeom = feature.ToSqlGeometry(srid);
+				if (sqlGeom != null)
+					retList.Add(sqlGeom);
+			}
+			return retList;
 		}
 
 		//public static SqlGeometry ToSqlGeometry<T>(T geoJsonObject, int srid = 0) where T : GeoJSONObject

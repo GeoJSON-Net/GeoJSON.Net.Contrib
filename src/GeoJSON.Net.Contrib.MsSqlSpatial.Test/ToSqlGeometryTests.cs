@@ -6,6 +6,7 @@ using GeoJSON.Net.Geometry;
 using GeoJSON.Net.Contrib.MsSqlSpatial;
 using System.Data.SqlTypes;
 using System.Collections.Generic;
+using GeoJSON.Net.Feature;
 
 namespace GeoJSON.Net.MsSqlSpatial.Tests
 {
@@ -20,6 +21,8 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		Polygon polygonWithHole;
 		MultiPolygon multiPolygon;
 		GeometryCollection geomCollection;
+		Feature.Feature feature;
+		FeatureCollection featureCollection;
 		public ToSqlGeometryTests()
 		{
 			point = new Point(new GeographicPosition(53.2455662, 90.65464646));
@@ -129,6 +132,12 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
                     multiPolygon
                 });
 
+			feature = new Feature.Feature(polygon, new Dictionary<string, object>() { { "Key", "Value" } }, "Id");
+
+			featureCollection = new FeatureCollection(new List<Feature.Feature> {
+					feature, new Feature.Feature(multiPolygon, null)
+			});
+
 		}
 
 		[TestMethod]
@@ -222,6 +231,28 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 			Assert.IsNotNull(sqlGeomCol);
 			Assert.AreEqual(sqlGeomCol.STGeometryType().Value, OpenGisGeometryType.GeometryCollection.ToString());
 			Assert.AreEqual(sqlGeomCol.STNumGeometries().Value, geomCollection.Geometries.Count);
+		}
+
+		[TestMethod]
+		public void ToSqlGeometryValidFeatureTest()
+		{
+			SqlGeometry sqlFeature = feature.ToSqlGeometry();
+
+			Assert.IsNotNull(feature);
+			Assert.IsNotNull(sqlFeature);
+			Assert.AreEqual(sqlFeature.STGeometryType().Value, OpenGisGeometryType.Polygon.ToString());
+			Assert.AreEqual(sqlFeature.STNumPoints().Value, polygon.Coordinates.SelectMany(ls => ls.Coordinates).Count());
+		}
+
+		[TestMethod]
+		public void ToSqlGeometryValidFeatureCollectionTest()
+		{
+			List<SqlGeometry> sqlFeatureCol = featureCollection.ToSqlGeometry();
+
+			Assert.IsNotNull(feature);
+			Assert.IsNotNull(sqlFeatureCol);
+			Assert.AreEqual(sqlFeatureCol.Count, featureCollection.Features.Count);
+			Assert.AreEqual(sqlFeatureCol.Sum(g => g.STNumPoints().Value), polygon.Coordinates.SelectMany(ls => ls.Coordinates).Count() + multiPolygon.Coordinates.SelectMany(p => p.Coordinates).SelectMany(ls => ls.Coordinates).Count());
 		}
 
 
