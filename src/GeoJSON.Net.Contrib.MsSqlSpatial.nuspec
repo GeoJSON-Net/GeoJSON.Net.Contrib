@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>GeoJSON.Net.Contrib.MsSqlSpatial</id>
+    <version>$version$</version>
+    <authors>Xavier Fischer</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides GeoJSON.Net Converters from / to the MS SQL Spatial types.</description>
+    <summary>This package contains custom JSON converters to be used with the base GeoJSON.Net library to bridge from and to the Microsoft SQL Spatial types.</summary>
+    <releaseNotes>Initial version.</releaseNotes>
+    <language>en-US</language>
+    <copyright>Joerg Battermann and Contributors (!)</copyright>
+    <licenseUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/README.md</projectUrl>
+    <dependencies>
+      <dependency id="GeoJSON.Net" version="0.1.38" />
+      <dependency id="Microsoft.SqlServer.Types" version="11.0.2" />
+      <dependency id="Newtonsoft.Json" version="7.0.1" />
+    </dependencies>
+    <tags>GeoJSON JSON List SQL Spatial Converters Conversion</tags>
+  </metadata>
+  <files>
+    <file src="GeoJSON.Net.Contrib.MsSqlSpatial\bin\Release\GeoJSON.Net.Contrib.MsSqlSpatial.dll" target="lib\net40" />
+    <file src="GeoJSON.Net.Contrib.MsSqlSpatial\bin\Release\GeoJSON.Net.Contrib.MsSqlSpatial.pdb" target="lib\net40" />
+    <file src="GeoJSON.Net.Contrib.MsSqlSpatial\bin\Release\GeoJSON.Net.Contrib.MsSqlSpatial.xml" target="lib\net40" />
+  </files>
+</package>
