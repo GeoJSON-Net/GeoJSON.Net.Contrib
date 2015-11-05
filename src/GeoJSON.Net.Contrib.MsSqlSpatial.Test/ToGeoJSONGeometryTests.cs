@@ -14,7 +14,7 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		public void ValidPointTest()
 		{
 			IGeometryObject geoJSON = MsSqlSpatialConvert.ToGeoJSONGeometry(simplePoint);
-			var geoJSONobj = MsSqlSpatialConvert.ToGeoJSONObject<Point>(simplePoint);
+			Point geoJSONobj = MsSqlSpatialConvert.ToGeoJSONObject<Point>(simplePoint);
 
 			Assert.IsNotNull(geoJSON);
 			Assert.IsNotNull(geoJSONobj);
@@ -22,6 +22,7 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 			Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.Point);
 			Assert.IsNotNull(geoJSONobj.BoundingBoxes);
 			CollectionAssert.AreEqual(geoJSONobj.BoundingBoxes, simplePoint.BoundingBox());
+
 		}
 
 		[TestMethod]
