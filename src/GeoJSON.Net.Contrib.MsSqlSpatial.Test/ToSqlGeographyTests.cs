@@ -11,7 +11,7 @@ using GeoJSON.Net.Feature;
 namespace GeoJSON.Net.MsSqlSpatial.Tests
 {
 	[TestClass]
-	public class ToSqlGeometryTests
+	public class ToSqlGeographyTests
 	{
 		Point point;
 		MultiPoint multiPoint;
@@ -19,11 +19,12 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		MultiLineString multiLineString;
 		Polygon polygon;
 		Polygon polygonWithHole;
+		Polygon polygonWithHoleReverseWinding;
 		MultiPolygon multiPolygon;
 		GeometryCollection geomCollection;
 		Feature.Feature feature;
 		FeatureCollection featureCollection;
-		public ToSqlGeometryTests()
+		public ToSqlGeographyTests()
 		{
 			point = new Point(new GeographicPosition(53.2455662, 90.65464646));
 
@@ -54,25 +55,75 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
                         new GeographicPosition(52.303440474272755, 5.426047363281249, 4.23)
                     })
                 });
-
+			/*
+			 * POLYGON (
+			 *	new GeographicPosition(5.6718750056992775 43.179268827576763), 
+			 *	new GeographicPosition(5.7627938771963274 43.282358019007539), 
+			 *	new GeographicPosition(5.6827878158334473 43.399165901196014), 
+			 *	new GeographicPosition(5.7883490332690677 43.420263481346808), 
+			 *	new GeographicPosition(5.6569195891695419 43.575280226136485), 
+			 *	new GeographicPosition(5.7992059672926253 43.659928964120652), 
+			 *	new GeographicPosition(5.772453944482355 43.722182053435269), 
+			 *	new GeographicPosition(5.5305079449053451 43.659231446664869), 
+			 *	new GeographicPosition(4.7390611308576647 43.924068511657794), 
+			 *	new GeographicPosition(4.641909591242106 43.867477587972004), 
+			 *	new GeographicPosition(4.6268107341244811 43.688132623094383), 
+			 *	new GeographicPosition(4.4864081749462246 43.698853136943086), 
+			 *	new GeographicPosition(4.4608683979209367 43.58945970637793), 
+			 *	new GeographicPosition(4.2379330762447731 43.49708004345662), 
+			 *	new GeographicPosition(4.55238424144851 43.446971295015622), 
+			 *	new GeographicPosition(4.6618166942350943 43.346294896388663), 
+			 *	new GeographicPosition(4.8579247842437638 43.334654947962143), 
+			 *	new GeographicPosition(4.861467735270022 43.455412079597927), 
+			 *	new GeographicPosition(5.0545884574514082 43.326670147834825), 
+			 *	new GeographicPosition(5.3160671845314269 43.359760733800755), 
+			 *	new GeographicPosition(5.3405286722678431 43.214414007811236), 
+			 *	new GeographicPosition(5.6718750056992775 43.179268827576763), 
+			 *	
+			 *  new GeographicPosition(5.0144408111937375, 43.555545986597537), 
+			 *	new GeographicPosition( 5.2267178460469337, 43.453922302237586), 
+			 *	new GeographicPosition( 5.0599489280101588, 43.404914999013144), 
+			 *	new GeographicPosition(5.0144408111937375, 43.555545986597537)
+			*/
 			polygonWithHole = new Polygon(new List<LineString>
                 {
                     new LineString(new List<GeographicPosition>
                     {
-											new GeographicPosition(0.516357421875, 47.6415668949958),
-											new GeographicPosition(0.516357421875, 47.34463879017405),
-											new GeographicPosition(0.977783203125, 47.22539733216678),
-											new GeographicPosition(1.175537109375, 47.463611506072866),
-											new GeographicPosition(0.516357421875, 47.6415668949958)
+											new GeographicPosition( 43.179268827576763 ,5.6718750056992775), 
+											new GeographicPosition(43.282358019007539	,5.7627938771963274), 
+											new GeographicPosition(43.399165901196014	,5.6827878158334473), 
+											new GeographicPosition(43.420263481346808	,5.7883490332690677), 
+											new GeographicPosition(43.575280226136485	,5.6569195891695419), 
+											new GeographicPosition(43.659928964120652	,5.7992059672926253), 
+											new GeographicPosition(43.722182053435269	,5.772453944482355 ), 
+											new GeographicPosition(43.659231446664869	,5.5305079449053451), 
+											new GeographicPosition(43.924068511657794	,4.7390611308576647), 
+											new GeographicPosition(43.867477587972004	,4.641909591242106 ), 
+											new GeographicPosition(43.688132623094383	,4.6268107341244811), 
+											new GeographicPosition(43.698853136943086	,4.4864081749462246), 
+											new GeographicPosition(43.58945970637793		,4.4608683979209367), 
+											new GeographicPosition(43.49708004345662		,4.2379330762447731), 
+											new GeographicPosition(43.446971295015622	,4.55238424144851  ), 
+											new GeographicPosition(43.346294896388663	,4.6618166942350943), 
+											new GeographicPosition(43.334654947962143	,4.8579247842437638), 
+											new GeographicPosition(43.455412079597927	,4.861467735270022 ), 
+											new GeographicPosition(43.326670147834825	,5.0545884574514082), 
+											new GeographicPosition(43.359760733800755	,5.3160671845314269), 
+											new GeographicPosition(43.214414007811236	,5.3405286722678431), 
+											new GeographicPosition(43.179268827576763	,5.6718750056992775)
                     }),
 										 new LineString(new List<GeographicPosition>
 											{
-												new GeographicPosition(0.630340576171875, 47.54944962456812),
-												new GeographicPosition(0.630340576171875, 47.49380564962583),
-												new GeographicPosition(0.729217529296875, 47.482669772098674),
-												new GeographicPosition(0.731964111328125, 47.53276262898896),
-												new GeographicPosition(0.630340576171875, 47.54944962456812)
+												  new GeographicPosition( 43.555545986597537,5.0144408111937375	), 
+													new GeographicPosition( 43.453922302237586, 5.2267178460469337), 
+			 										new GeographicPosition( 43.404914999013144, 5.0599489280101588), 
+			 										new GeographicPosition( 43.555545986597537,5.0144408111937375	)
 											})
+								});
+			polygonWithHoleReverseWinding = new Polygon(new List<LineString>
+                {
+                    new LineString( polygonWithHole.Coordinates[0].Coordinates.Select(c => (GeographicPosition)c).Reverse().ToList()),
+										new LineString( polygonWithHole.Coordinates[1].Coordinates.Select(c => (GeographicPosition)c).Reverse().ToList())
 								});
 			polygon = new Polygon(new List<LineString>
                 {
@@ -141,9 +192,9 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidPointTest()
+		public void ToSqlGeographyValidPointTest()
 		{
-			SqlGeometry sqlPoint = point.ToSqlGeometry();
+			SqlGeography sqlPoint = point.ToSqlGeography();
 
 			Assert.IsNotNull(point);
 			Assert.IsNotNull(sqlPoint);
@@ -152,9 +203,9 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidMultiPointTest()
+		public void ToSqlGeographyValidMultiPointTest()
 		{
-			SqlGeometry sqlMultiPoint = multiPoint.ToSqlGeometry();
+			SqlGeography sqlMultiPoint = multiPoint.ToSqlGeography();
 
 			Assert.IsNotNull(multiPoint);
 			Assert.IsNotNull(sqlMultiPoint);
@@ -163,9 +214,9 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidLineStringTest()
+		public void ToSqlGeographyValidLineStringTest()
 		{
-			SqlGeometry sqlLineString = lineString.ToSqlGeometry();
+			SqlGeography sqlLineString = lineString.ToSqlGeography();
 
 			Assert.IsNotNull(lineString);
 			Assert.IsNotNull(sqlLineString);
@@ -174,9 +225,9 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidMultiLineStringTest()
+		public void ToSqlGeographyValidMultiLineStringTest()
 		{
-			SqlGeometry sqlMultiLineString = multiLineString.ToSqlGeometry();
+			SqlGeography sqlMultiLineString = multiLineString.ToSqlGeography();
 
 			Assert.IsNotNull(multiLineString);
 			Assert.IsNotNull(sqlMultiLineString);
@@ -186,46 +237,54 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidPolygonTest()
+		public void ToSqlGeographyValidPolygonTest()
 		{
-			SqlGeometry sqlPolygon = polygon.ToSqlGeometry();
+			SqlGeography sqlPolygon = polygon.ToSqlGeography();
 
 			Assert.IsNotNull(polygon);
 			Assert.IsNotNull(sqlPolygon);
 			Assert.AreEqual(sqlPolygon.STGeometryType().Value, OpenGisGeometryType.Polygon.ToString());
-			Assert.AreEqual(sqlPolygon.STNumInteriorRing().Value + 1, polygon.Coordinates.Count);
 			Assert.AreEqual(sqlPolygon.STNumPoints().Value, polygon.Coordinates.SelectMany(ls => ls.Coordinates).Count());
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidPolygonWithHoleTest()
+		public void ToSqlGeographyValidPolygonWithHoleTest()
 		{
-			SqlGeometry sqlPolygon = polygonWithHole.ToSqlGeometry();
+			SqlGeography sqlPolygon = polygonWithHole.ToSqlGeography();
 
 			Assert.IsNotNull(polygonWithHole);
 			Assert.IsNotNull(sqlPolygon);
 			Assert.AreEqual(sqlPolygon.STGeometryType().Value, OpenGisGeometryType.Polygon.ToString());
-			Assert.AreEqual(sqlPolygon.STNumInteriorRing().Value + 1, polygonWithHole.Coordinates.Count);
 			Assert.AreEqual(sqlPolygon.STNumPoints().Value, polygonWithHole.Coordinates.SelectMany(ls => ls.Coordinates).Count());
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidMultiPolygonTest()
+		public void ToSqlGeographyValidPolygonWithHoleReverseWindingTest()
 		{
-			SqlGeometry sqlMultiPolygon = multiPolygon.ToSqlGeometry();
+			SqlGeography sqlPolygon = polygonWithHoleReverseWinding.ToSqlGeography();
+
+			Assert.IsNotNull(polygonWithHoleReverseWinding);
+			Assert.IsNotNull(sqlPolygon);
+			Assert.AreEqual(sqlPolygon.STGeometryType().Value, OpenGisGeometryType.Polygon.ToString());
+			Assert.AreEqual(sqlPolygon.STNumPoints().Value, polygonWithHoleReverseWinding.Coordinates.SelectMany(ls => ls.Coordinates).Count());
+		}
+
+		[TestMethod]
+		public void ToSqlGeographyValidMultiPolygonTest()
+		{
+			SqlGeography sqlMultiPolygon = multiPolygon.ToSqlGeography();
 
 			Assert.IsNotNull(multiPolygon);
 			Assert.IsNotNull(sqlMultiPolygon);
 			Assert.AreEqual(sqlMultiPolygon.STGeometryType().Value, OpenGisGeometryType.MultiPolygon.ToString());
 			Assert.AreEqual(sqlMultiPolygon.STNumGeometries().Value, multiPolygon.Coordinates.Count);
-			Assert.AreEqual(sqlMultiPolygon.Geometries().Sum(g => g.STNumInteriorRing().Value + 1) , multiPolygon.Coordinates.SelectMany(p => p.Coordinates).Count());
 			Assert.AreEqual(sqlMultiPolygon.STNumPoints().Value, multiPolygon.Coordinates.SelectMany(p => p.Coordinates).SelectMany(ls => ls.Coordinates).Count());
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidGeometryCollectionTest()
+		public void ToSqlGeographyValidGeometryCollectionTest()
 		{
-			SqlGeometry sqlGeomCol = geomCollection.ToSqlGeometry();
+			SqlGeography sqlGeomCol = geomCollection.ToSqlGeography();
 
 			Assert.IsNotNull(geomCollection);
 			Assert.IsNotNull(sqlGeomCol);
@@ -234,9 +293,9 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidFeatureTest()
+		public void ToSqlGeographyValidFeatureTest()
 		{
-			SqlGeometry sqlFeature = feature.ToSqlGeometry();
+			SqlGeography sqlFeature = feature.ToSqlGeography();
 
 			Assert.IsNotNull(feature);
 			Assert.IsNotNull(sqlFeature);
@@ -245,9 +304,9 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		}
 
 		[TestMethod]
-		public void ToSqlGeometryValidFeatureCollectionTest()
+		public void ToSqlGeographyValidFeatureCollectionTest()
 		{
-			List<SqlGeometry> sqlFeatureCol = featureCollection.ToSqlGeometry();
+			List<SqlGeography> sqlFeatureCol = featureCollection.ToSqlGeography();
 
 			Assert.IsNotNull(feature);
 			Assert.IsNotNull(sqlFeatureCol);

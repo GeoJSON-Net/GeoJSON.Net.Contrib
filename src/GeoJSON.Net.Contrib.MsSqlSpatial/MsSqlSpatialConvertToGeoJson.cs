@@ -21,7 +21,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 		/// </summary>
 		/// <param name="sqlGeometry">SQL Server geometry to convert</param>
 		/// <returns>GeoJSON geometry</returns>
-		public static IGeometryObject ToGeoJSONGeometry(SqlGeometry sqlGeometry)
+		public static IGeometryObject ToGeoJSONGeometry(this SqlGeometry sqlGeometry)
 		{
 			if (sqlGeometry == null || sqlGeometry.IsNull)
 			{
@@ -46,7 +46,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 		/// </summary>
 		/// <param name="sqlGeometry">SQL Server geometry to convert</param>
 		/// <returns>GeoJSON geometry</returns>
-		public static T ToGeoJSONObject<T>(SqlGeometry sqlGeometry) where T : GeoJSONObject
+		public static T ToGeoJSONObject<T>(this  SqlGeometry sqlGeometry) where T : GeoJSONObject
 		{
 			if (sqlGeometry == null || sqlGeometry.IsNull)
 			{
@@ -79,7 +79,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 		/// </summary>
 		/// <param name="sqlGeography">SQL Server geography to convert</param>
 		/// <returns>GeoJSON geometry</returns>
-		public static IGeometryObject ToGeoJSONGeometry(SqlGeography sqlGeography)
+		public static IGeometryObject ToGeoJSONGeometry(this SqlGeography sqlGeography)
 		{
 			if (sqlGeography == null || sqlGeography.IsNull)
 			{
@@ -104,7 +104,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 		/// </summary>
 		/// <param name="sqlGeography">SQL Server geography to convert</param>
 		/// <returns>GeoJSON geometry</returns>
-		public static T ToGeoJSONObject<T>(SqlGeography sqlGeography) where T : GeoJSONObject
+		public static T ToGeoJSONObject<T>(this SqlGeography sqlGeography) where T : GeoJSONObject
 		{
 			if (sqlGeography == null || sqlGeography.IsNull)
 			{
