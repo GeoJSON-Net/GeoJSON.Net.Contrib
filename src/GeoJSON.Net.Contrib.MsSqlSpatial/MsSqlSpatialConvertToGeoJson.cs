@@ -8,11 +8,18 @@ using Microsoft.SqlServer.Types;
 
 namespace GeoJSON.Net.Contrib.MsSqlSpatial
 {
-	/// <summary>
-	/// Partial class. Only methods from Sql spatial types to GeoJSON are here
-	/// For GeoJSON to Sql Server, see MsSqlSpatialConvertToSql.cs file
-	/// </summary>
-	public static partial class MsSqlSpatialConvert
+    /*
+        MsSqlSpatialConvert
+        Partial class. Only methods from Sql spatial types to GeoJSON are here
+        For Sql spatial types to GeoJSON, see MsSqlSpatialConvertToGeoJson.cs file
+        For GeoJSON to Sql Server geometry, see MsSqlSpatialConvertToSqlGeometry.cs file
+        For GeoJSON to Sql Server geography, see MsSqlSpatialConvertToSqlGeography.cs file
+    */
+    /// <summary>
+    /// GeoJSON.Net / MS Sql Server Spatial data types converter.
+    /// All methods here are static and extensions to GeoJSON.Net types and Sql Server types.
+    /// </summary>
+    public static partial class MsSqlSpatialConvert
 	{
 		#region SqlGeometry to GeoJSON
 
