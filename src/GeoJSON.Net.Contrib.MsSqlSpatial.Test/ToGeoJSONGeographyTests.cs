@@ -127,6 +127,91 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 			Assert.AreEqual(geoJSONobj.Geometries[2].Type, GeoJSONObjectType.Point);
 		}
 
+		[TestMethod]
+		public void TestEmptyMultiPoint_Geography()
+		{
+			SqlGeographyBuilder builder = new SqlGeographyBuilder();
+			builder.SetSrid(4326);
+			builder.BeginGeography(OpenGisGeographyType.MultiPoint);
+			builder.EndGeography();
+			var multiPoint = builder.ConstructedGeography;
+			var geoJSON = multiPoint.ToGeoJSONGeometry();
+			var geoJSONobj = multiPoint.ToGeoJSONObject<MultiPoint>();
+			Assert.IsNotNull(geoJSON);
+			Assert.IsNotNull(geoJSONobj);
+			Assert.AreEqual(geoJSON.Type, GeoJSONObjectType.MultiPoint);
+			Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.MultiPoint);
+			Assert.IsTrue(geoJSONobj.BoundingBoxes.Length == 4);
+			CollectionAssert.AreEqual(geoJSONobj.BoundingBoxes, multiPoint.BoundingBox());
+			var geom = geoJSONobj.ToSqlGeometry();
+			Assert.IsTrue(geom.STGeometryType().Value == "MultiPoint");
+			Assert.IsTrue(geom.STIsEmpty().IsTrue);
+		}
+
+		[TestMethod]
+		public void TestEmptyMultiPolygon_Geography()
+		{
+			SqlGeographyBuilder builder = new SqlGeographyBuilder();
+			builder.SetSrid(4326);
+			builder.BeginGeography(OpenGisGeographyType.MultiPolygon);
+			builder.EndGeography();
+			var multiPoly = builder.ConstructedGeography;
+			var geoJSON = multiPoly.ToGeoJSONGeometry();
+			var geoJSONobj = multiPoly.ToGeoJSONObject<MultiPolygon>();
+			Assert.IsNotNull(geoJSON);
+			Assert.IsNotNull(geoJSONobj);
+			Assert.AreEqual(geoJSON.Type, GeoJSONObjectType.MultiPolygon);
+			Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.MultiPolygon);
+			Assert.IsTrue(geoJSONobj.BoundingBoxes.Length == 4);
+			CollectionAssert.AreEqual(geoJSONobj.BoundingBoxes, multiPoly.BoundingBox());
+			var geom = geoJSONobj.ToSqlGeometry();
+			Assert.IsTrue(geom.STGeometryType().Value == "MultiPolygon");
+			Assert.IsTrue(geom.STIsEmpty().IsTrue);
+		}
+
+		[TestMethod]
+		public void TestEmptyMultiLineString_Geography()
+		{
+			SqlGeographyBuilder builder = new SqlGeographyBuilder();
+			builder.SetSrid(4326);
+			builder.BeginGeography(OpenGisGeographyType.MultiLineString);
+			builder.EndGeography();
+			var multiLineString = builder.ConstructedGeography;
+			var geoJSON = multiLineString.ToGeoJSONGeometry();
+			var geoJSONobj = multiLineString.ToGeoJSONObject<MultiLineString>();
+			Assert.IsNotNull(geoJSON);
+			Assert.IsNotNull(geoJSONobj);
+			Assert.AreEqual(geoJSON.Type, GeoJSONObjectType.MultiLineString);
+			Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.MultiLineString);
+			Assert.IsTrue(geoJSONobj.BoundingBoxes.Length == 4);
+			CollectionAssert.AreEqual(geoJSONobj.BoundingBoxes, multiLineString.BoundingBox());
+			var geom = geoJSONobj.ToSqlGeometry();
+			Assert.IsTrue(geom.STGeometryType().Value == "MultiLineString");
+			Assert.IsTrue(geom.STIsEmpty().IsTrue);
+		}
+
+		[TestMethod]
+		public void TestEmptGeometryCollection_Geography()
+		{
+			SqlGeographyBuilder builder = new SqlGeographyBuilder();
+			builder.SetSrid(4326);
+			builder.BeginGeography(OpenGisGeographyType.GeometryCollection);
+			builder.EndGeography();
+			var geomCollection = builder.ConstructedGeography;
+			var geoJSON = geomCollection.ToGeoJSONGeometry();
+			var geoJSONobj = geomCollection.ToGeoJSONObject<GeometryCollection>();
+			Assert.IsNotNull(geoJSON);
+			Assert.IsNotNull(geoJSONobj);
+			Assert.AreEqual(geoJSON.Type, GeoJSONObjectType.GeometryCollection);
+			Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.GeometryCollection);
+			Assert.IsTrue(geoJSONobj.BoundingBoxes.Length == 4);
+			CollectionAssert.AreEqual(geoJSONobj.BoundingBoxes, geomCollection.BoundingBox());
+			var geom = geoJSONobj.ToSqlGeometry();
+			Assert.IsTrue(geom.STGeometryType().Value == "GeometryCollection");
+			Assert.IsTrue(geom.STIsEmpty().IsTrue);
+
+		}
+
 		#region Test geographies
 
 		SqlGeography simplePoint = SqlGeography.Point(47, 1, 4326).MakeValidIfInvalid();
