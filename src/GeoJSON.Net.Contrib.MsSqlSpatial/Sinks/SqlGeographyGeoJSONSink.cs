@@ -60,14 +60,18 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 		public void BeginFigure(double lat, double lon, double? z, double? m)
 		{
 			_currentRing = new SinkLineRing();
-			_currentRing.Add(new GeographicPosition(lon, lat, z));
+			_currentRing.Add(new GeographicPosition(latitude: lat
+																							, longitude: lon
+																							, altitude: z));
 
 			UpdateBoundingBox(lon, lat);
 		}
 
 		public void AddLine(double lat, double lon, double? z, double? m)
 		{
-			_currentRing.Add(new GeographicPosition(lon, lat, z));
+			_currentRing.Add(new GeographicPosition(latitude: lat
+																							, longitude: lon
+																							, altitude: z));
 
 			UpdateBoundingBox(lon, lat);
 		}
@@ -80,7 +84,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 			_currentGeometry.Add(_currentRing);
 			_currentRing = null;
 		}
-		
+
 		public void EndGeography()
 		{
 			_nestLevel--;

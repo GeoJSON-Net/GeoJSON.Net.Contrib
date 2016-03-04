@@ -15,7 +15,7 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 		public void ValidPointTest_Geography()
 		{
 			IGeometryObject geoJSON = MsSqlSpatialConvert.ToGeoJSONGeometry(simplePoint);
-			var geoJSONobj = MsSqlSpatialConvert.ToGeoJSONObject<Point>(simplePoint);
+			Point geoJSONobj = MsSqlSpatialConvert.ToGeoJSONObject<Point>(simplePoint);
 
 			Assert.IsNotNull(geoJSON);
 			Assert.IsNotNull(geoJSONobj);
@@ -23,13 +23,16 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 			Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.Point);
 			Assert.IsNotNull(geoJSONobj.BoundingBoxes);
 			CollectionAssert.AreEqual(geoJSONobj.BoundingBoxes, simplePoint.BoundingBox());
+			Assert.AreEqual(((GeographicPosition)geoJSONobj.Coordinates).Latitude, simplePoint.Lat.Value);
+			Assert.AreEqual(((GeographicPosition)geoJSONobj.Coordinates).Longitude, simplePoint.Long.Value);
+			
 		}
 
 		[TestMethod]
 		public void ValidMultiPointTest_Geography()
 		{
 			IGeometryObject geoJSON = MsSqlSpatialConvert.ToGeoJSONGeometry(multiPoint);
-			var geoJSONobj = MsSqlSpatialConvert.ToGeoJSONObject<MultiPoint>(multiPoint);
+			MultiPoint geoJSONobj = MsSqlSpatialConvert.ToGeoJSONObject<MultiPoint>(multiPoint);
 
 			Assert.IsNotNull(geoJSON);
 			Assert.IsNotNull(geoJSONobj);
