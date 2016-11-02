@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.MsSqlSpatial", "GeoJSON.Net.Contrib.MsSqlSpatial\GeoJSON.Net.Contrib.MsSqlSpatial.csproj", "{129AFFB0-773B-4F50-BFEC-E0856C19EED6}"
 EndProject
@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		GeoJSON.Net.Contrib.MsSqlSpatial.nuspec = GeoJSON.Net.Contrib.MsSqlSpatial.nuspec
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.DebuggerVisualizer", "GeoJSON.Net.Contrib.DebuggerVisualizer\GeoJSON.Net.Contrib.DebuggerVisualizer.csproj", "{2D39BA1D-3D14-4D76-93AC-CB2123E7E384}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.DebuggerVisualizer.Test", "GeoJSON.Net.Contrib.DebuggerVisualizer.Test\GeoJSON.Net.Contrib.DebuggerVisualizer.Test.csproj", "{3B2418D5-41A7-4ADE-9563-327951A84EE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{DC5DA532-32D5-4D5E-B213-05E2568C47F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC5DA532-32D5-4D5E-B213-05E2568C47F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC5DA532-32D5-4D5E-B213-05E2568C47F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D39BA1D-3D14-4D76-93AC-CB2123E7E384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D39BA1D-3D14-4D76-93AC-CB2123E7E384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D39BA1D-3D14-4D76-93AC-CB2123E7E384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D39BA1D-3D14-4D76-93AC-CB2123E7E384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2418D5-41A7-4ADE-9563-327951A84EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2418D5-41A7-4ADE-9563-327951A84EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2418D5-41A7-4ADE-9563-327951A84EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2418D5-41A7-4ADE-9563-327951A84EE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
