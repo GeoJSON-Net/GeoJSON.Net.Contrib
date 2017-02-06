@@ -78,6 +78,8 @@
     <Compile Include="ToSqlGeographyTests.cs" />
     <Compile Include="ToSqlGeometryTests.cs" />
     <Compile Include="ToGeoJSONGeometryTests.cs" />
+    <Compile Include="WktSamples.cs" />
+    <Compile Include="WktTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeoJSON.Net.Contrib.MsSqlSpatial\GeoJSON.Net.Contrib.MsSqlSpatial.csproj">

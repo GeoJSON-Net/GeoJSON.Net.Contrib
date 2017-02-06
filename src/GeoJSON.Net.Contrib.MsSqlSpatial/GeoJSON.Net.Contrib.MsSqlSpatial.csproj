@@ -68,6 +68,7 @@
     <Compile Include="Sinks\SqlGeographyGeoJSONSink.cs" />
     <Compile Include="Sinks\SqlGeometryGeoJSONSink.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="WktHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
