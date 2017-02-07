@@ -1,4 +1,4 @@
-# GeoJSON.Net.Contrib [![Build status](https://ci.appveyor.com/api/projects/status/o0luferroe8haepe)](https://ci.appveyor.com/project/xfischer/geojson-net-contrib-qj7q5)
+# GeoJSON.Net.Contrib [![Build status](https://ci.appveyor.com/api/projects/status/8i73123t14xro67k)](https://ci.appveyor.com/project/GeojsonNet/geojson-net-contrib)
 Repository for all GeoJSON.Net *.Contrib projects
 
 ## GeoJSON.Net.Contrib.MsSqlSpatial
