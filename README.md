@@ -4,6 +4,9 @@ Repository for all GeoJSON.Net *.Contrib projects
 ## GeoJSON.Net.Contrib.MsSqlSpatial
 Allows conversion from / to Microsoft Sql Server geometry and geography data types.
 
+[NuGet package](https://www.nuget.org/packages/GeoJSON.Net.Contrib.MsSqlSpatial):
+`Install-Package GeoJSON.Net.Contrib.MsSqlSpatial`
+
 ### Conversion examples:
 
 ```csharp
