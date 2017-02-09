@@ -24,15 +24,15 @@ Point point = simplePoint.ToGeoJSONObject<Point>();
 SqlGeometry sqlPoint = point.ToSqlGeometry(4326);
 ```
 
-### WKT helper examples:
+### WKT conversion examples:
 
 ```csharp
 using GeoJSON.Net.Contrib.MsSqlSpatial;
 using GeoJSON.Net.Geometry;
 
 // LineString from WKT
-LineString lineString = WktHelper.GeoJSONObject<LineString>("LINESTRING(1 47,1 46,0 46,0 47,1 47)");
+LineString lineString = WktConvert.GeoJSONObject<LineString>("LINESTRING(1 47,1 46,0 46,0 47,1 47)");
 
 // LineString IGeometryObject from WKT
-IGeometryObject lineStringGeom = WktHelper.GeoJSONGeometry("LINESTRING(1 47,1 46,0 46,0 47,1 47)");
+IGeometryObject lineStringGeom = WktConvert.GeoJSONGeometry("LINESTRING(1 47,1 46,0 46,0 47,1 47)");
 ```

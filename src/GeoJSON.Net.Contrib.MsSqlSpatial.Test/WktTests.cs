@@ -11,35 +11,37 @@ using System.Threading.Tasks;
 namespace GeoJSON.Net.MsSqlSpatial.Tests
 {
 	/// <summary>
-	/// WktHelper tests
+	/// WktConvert tests
 	/// </summary>
     [TestClass]
     public class WktTests
     {
         [TestMethod]
+        [TestCategory("WKT")]
         public void Wkt_ToIGeometryObject()
         {
-            IGeometryObject geom = WktHelper.GeoJSONGeometry(WktSamples.LINESTRING);
+            IGeometryObject geom = WktConvert.GeoJSONGeometry(WktSamples.LINESTRING);
 
             Assert.IsNotNull(geom);
             Assert.AreEqual(geom.Type, GeoJSONObjectType.LineString);
 
 
-            geom = WktHelper.GeoJSONGeometry(WktSamples.MULTILINESTRING_EMPY);
+            geom = WktConvert.GeoJSONGeometry(WktSamples.MULTILINESTRING_EMPY);
             Assert.IsNotNull(geom);
             Assert.AreEqual(geom.Type, GeoJSONObjectType.MultiLineString);
 
         }
 
         [TestMethod]
+        [TestCategory("WKT")]
         public void Wkt_ToGeoJsonObject()
         {
-            LineString lineString = WktHelper.GeoJSONObject<LineString>(WktSamples.LINESTRING);
+            LineString lineString = WktConvert.GeoJSONObject<LineString>(WktSamples.LINESTRING);
 
             Assert.IsNotNull(lineString);
             Assert.AreEqual(lineString.Coordinates.Count, 5);
 
-            MultiLineString multiLineString = WktHelper.GeoJSONObject<MultiLineString>(WktSamples.MULTILINESTRING_EMPY);
+            MultiLineString multiLineString = WktConvert.GeoJSONObject<MultiLineString>(WktSamples.MULTILINESTRING_EMPY);
 
             Assert.IsNotNull(multiLineString);
             Assert.AreEqual(multiLineString.Coordinates.Count, 0);

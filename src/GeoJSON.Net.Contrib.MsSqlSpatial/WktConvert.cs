@@ -12,7 +12,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
     /// <summary>
     /// Well Known Text (WKT) helper class. Allow to generate GeoJSON objects from WKT.
     /// </summary>
-    public static class WktHelper
+    public static class WktConvert
     {
         /// <summary>
         /// IGeometryObject representing WKT
