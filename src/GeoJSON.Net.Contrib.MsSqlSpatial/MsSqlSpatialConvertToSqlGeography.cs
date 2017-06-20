@@ -42,7 +42,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 		private static void Internal_FillGeographyBuilder(SqlGeographyBuilder gb, Point point)
 		{
 			gb.BeginGeography(OpenGisGeographyType.Point);
-			GeographicPosition pos = point.Coordinates as GeographicPosition;
+			Position pos = point.Coordinates as Position;
 			gb.BeginFigure(pos.Latitude, pos.Longitude);
 			gb.EndFigure();
 			gb.EndGeography();
@@ -67,7 +67,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			List<Point> coords = multiPoint.Coordinates as List<Point>;
 			foreach (var coord in coords)
 			{
-				GeographicPosition pos = coord.Coordinates as GeographicPosition;
+				Position pos = coord.Coordinates as Position;
 				gb.BeginGeography(OpenGisGeographyType.Point);
 				gb.BeginFigure(pos.Latitude, pos.Longitude);
 				gb.EndFigure();
@@ -95,7 +95,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			bool beginFigureCalled = false;
 			foreach (var ipos in lineString.Coordinates)
 			{
-				GeographicPosition pos = ipos as GeographicPosition;
+				Position pos = ipos as Position;
 				if (!beginFigureCalled)
 				{
 					gb.BeginFigure(pos.Latitude, pos.Longitude);
@@ -134,7 +134,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 				bool beginFigureCalled = false;
 				foreach (var ipos in lineString.Coordinates)
 				{
-					GeographicPosition pos = ipos as GeographicPosition;
+					Position pos = ipos as Position;
 					if (!beginFigureCalled)
 					{
 						gb.BeginFigure(pos.Latitude, pos.Longitude);
@@ -170,8 +170,8 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			bool isExteriorRing = true;
 			foreach (var lineString in polygon.Coordinates)
 			{
-				List<GeographicPosition> listGeoCoords = lineString.Coordinates.Select(p => p as GeographicPosition).ToList();
-				IEnumerable<GeographicPosition> orderedPositions = EnsureCorrectWinding(listGeoCoords, isExteriorRing); // exterior ring must be anti clockwise for SqlGeography
+				List<Position> listGeoCoords = lineString.Coordinates.Select(p => p as Position).ToList();
+				IEnumerable<Position> orderedPositions = EnsureCorrectWinding(listGeoCoords, isExteriorRing); // exterior ring must be anti clockwise for SqlGeography
 				isExteriorRing = false;
 				bool beginFigureCalled = false;
 				foreach (var pos in orderedPositions)
@@ -313,19 +313,19 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 
 		#endregion
 
-		private static IEnumerable<GeographicPosition> EnsureCorrectWinding(List<GeographicPosition> vertices, bool mustBeClockwise)
+		private static IEnumerable<Position> EnsureCorrectWinding(List<Position> vertices, bool mustBeClockwise)
 		{
 			int clockWiseCount = 0;
 			int counterClockWiseCount = 0;
-			GeographicPosition p1 = vertices[0];
+            Position p1 = vertices[0];
 
 			for (int i = 1; i < vertices.Count; i++)
 			{
-				GeographicPosition p2 = vertices[i];
-				GeographicPosition p3 = vertices[(i + 1) % vertices.Count];
+                Position p2 = vertices[i];
+                Position p3 = vertices[(i + 1) % vertices.Count];
 
-				GeographicPosition e1 =  new GeographicPosition(p1.Longitude - p2.Longitude, p1.Latitude - p2.Latitude);
-				GeographicPosition e2 = new GeographicPosition(p3.Longitude - p2.Longitude, p3.Latitude - p2.Latitude);
+                Position e1 =  new Position(p1.Longitude - p2.Longitude, p1.Latitude - p2.Latitude);
+                Position e2 = new Position(p3.Longitude - p2.Longitude, p3.Latitude - p2.Latitude);
 
 				if (e1.Longitude * e2.Latitude - e1.Latitude * e2.Longitude >= 0)
 					clockWiseCount++;
@@ -342,12 +342,12 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 				if (mustBeClockwise)
 					return vertices;
 				else 
-					return vertices.Reverse<GeographicPosition>();
+					return vertices.Reverse<Position>();
 			}
 			else
 			{
 				if (mustBeClockwise)
-					return vertices.Reverse<GeographicPosition>();
+					return vertices.Reverse<Position>();
 				else 
 					return vertices;
 			}

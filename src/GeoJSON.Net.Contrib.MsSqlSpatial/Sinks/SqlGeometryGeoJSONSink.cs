@@ -61,14 +61,14 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 		public void BeginFigure(double x, double y, double? z, double? m)
 		{
 			_currentRing = new SinkLineRing();
-			_currentRing.Add(new GeographicPosition(y, x, z));
+			_currentRing.Add(new Position(y, x, z));
 
 			UpdateBoundingBox(x, y);
 		}
 
 		public void AddLine(double x, double y, double? z, double? m)
 		{
-			_currentRing.Add(new GeographicPosition(y, x, z));
+			_currentRing.Add(new Position(y, x, z));
 
 			UpdateBoundingBox(x, y);
 		}

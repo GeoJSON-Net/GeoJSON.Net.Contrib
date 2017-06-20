@@ -43,7 +43,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 		private static void Internal_FillGeometryBuilder(SqlGeometryBuilder gb, Point point)
 		{
 			gb.BeginGeometry(OpenGisGeometryType.Point);
-			GeographicPosition pos = point.Coordinates as GeographicPosition;
+			Position pos = point.Coordinates as Position;
 			gb.BeginFigure(pos.Longitude, pos.Latitude);
 			gb.EndFigure();
 			gb.EndGeometry();
@@ -68,7 +68,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			List<Point> coords = multiPoint.Coordinates as List<Point>;
 			foreach (var coord in coords)
 			{
-				GeographicPosition pos = coord.Coordinates as GeographicPosition;
+				Position pos = coord.Coordinates as Position;
 				gb.BeginGeometry(OpenGisGeometryType.Point);
 				gb.BeginFigure(pos.Longitude, pos.Latitude);
 				gb.EndFigure();
@@ -96,7 +96,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			bool beginFigureCalled = false;
 			foreach (var ipos in lineString.Coordinates)
 			{
-				GeographicPosition pos = ipos as GeographicPosition;
+				Position pos = ipos as Position;
 				if (!beginFigureCalled)
 				{
 					gb.BeginFigure(pos.Longitude, pos.Latitude);
@@ -135,7 +135,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 				bool beginFigureCalled = false;
 				foreach (var ipos in lineString.Coordinates)
 				{
-					GeographicPosition pos = ipos as GeographicPosition;
+					Position pos = ipos as Position;
 					if (!beginFigureCalled)
 					{
 						gb.BeginFigure(pos.Longitude, pos.Latitude);
@@ -173,7 +173,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 				bool beginFigureCalled = false;
 				foreach (var ipos in lineString.Coordinates)
 				{
-					GeographicPosition pos = ipos as GeographicPosition;
+					Position pos = ipos as Position;
 					if (!beginFigureCalled)
 					{
 						gb.BeginFigure(pos.Longitude, pos.Latitude);

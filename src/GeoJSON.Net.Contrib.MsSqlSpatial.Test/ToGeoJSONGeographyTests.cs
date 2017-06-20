@@ -24,8 +24,8 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
             Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.Point);
             Assert.IsNotNull(geoJSONobj.BoundingBoxes);
             CollectionAssert.AreEqual(geoJSONobj.BoundingBoxes, simplePoint.BoundingBox());
-            Assert.AreEqual(((GeographicPosition)geoJSONobj.Coordinates).Latitude, simplePoint.Lat.Value);
-            Assert.AreEqual(((GeographicPosition)geoJSONobj.Coordinates).Longitude, simplePoint.Long.Value);
+            Assert.AreEqual(((Position)geoJSONobj.Coordinates).Latitude, simplePoint.Lat.Value);
+            Assert.AreEqual(((Position)geoJSONobj.Coordinates).Longitude, simplePoint.Long.Value);
 
         }
 
