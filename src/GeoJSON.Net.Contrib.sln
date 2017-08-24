@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.MsSqlSpatial", "GeoJSON.Net.Contrib.MsSqlSpatial\GeoJSON.Net.Contrib.MsSqlSpatial.csproj", "{129AFFB0-773B-4F50-BFEC-E0856C19EED6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.MsSqlSpatial.Test", "GeoJSON.Net.Contrib.MsSqlSpatial.Test\GeoJSON.Net.Contrib.MsSqlSpatial.Test.csproj", "{DC5DA532-32D5-4D5E-B213-05E2568C47F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FAE7159F-3A67-4B17-94B1-F15DD698A262}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +17,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		GeoJSON.Net.Contrib.MsSqlSpatial.nuspec = GeoJSON.Net.Contrib.MsSqlSpatial.nuspec
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.EntityFramework", "GeoJSON.Net.Contrib.EntityFramework\GeoJSON.Net.Contrib.EntityFramework.csproj", "{52FD515F-8EB4-4111-9460-E87DDB3CC27A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.NetContrib.WkbConversions", "GeoJSON.NetContrib.WkbConversions\GeoJSON.NetContrib.WkbConversions.csproj", "{7906A2F8-AB3D-426E-8D85-844C6DC18F22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{75D06657-8B12-429A-9094-C996B42DB484}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{780487AA-317B-4177-88B6-FAF324C02FAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.Wkb", "GeoJSON.Net.Contrib.Wkb\GeoJSON.Net.Contrib.Wkb.csproj", "{0696939C-5167-46DF-8200-A7FCCD5A9A08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.Wkb.Test", "..\test\GeoJSON.Net.Contrib.Wkb.Test\GeoJSON.Net.Contrib.Wkb.Test.csproj", "{DDAF5905-C8C2-4AB0-9053-73977F74AAD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.EntityFramework.Test", "..\test\GeoJSON.Net.Contrib.EntityFramework.Test\GeoJSON.Net.Contrib.EntityFramework.Test.csproj", "{4997DD03-2A95-4A3D-9A66-D587D41D0223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoJSON.Net.Contrib.MsSqlSpatial.Test", "..\test\GeoJSON.Net.Contrib.MsSqlSpatial.Test\GeoJSON.Net.Contrib.MsSqlSpatial.Test.csproj", "{DC5DA532-32D5-4D5E-B213-05E2568C47F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +43,26 @@ Global
 		{129AFFB0-773B-4F50-BFEC-E0856C19EED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{129AFFB0-773B-4F50-BFEC-E0856C19EED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{129AFFB0-773B-4F50-BFEC-E0856C19EED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52FD515F-8EB4-4111-9460-E87DDB3CC27A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52FD515F-8EB4-4111-9460-E87DDB3CC27A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52FD515F-8EB4-4111-9460-E87DDB3CC27A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52FD515F-8EB4-4111-9460-E87DDB3CC27A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7906A2F8-AB3D-426E-8D85-844C6DC18F22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7906A2F8-AB3D-426E-8D85-844C6DC18F22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7906A2F8-AB3D-426E-8D85-844C6DC18F22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7906A2F8-AB3D-426E-8D85-844C6DC18F22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0696939C-5167-46DF-8200-A7FCCD5A9A08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0696939C-5167-46DF-8200-A7FCCD5A9A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0696939C-5167-46DF-8200-A7FCCD5A9A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0696939C-5167-46DF-8200-A7FCCD5A9A08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAF5905-C8C2-4AB0-9053-73977F74AAD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAF5905-C8C2-4AB0-9053-73977F74AAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAF5905-C8C2-4AB0-9053-73977F74AAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAF5905-C8C2-4AB0-9053-73977F74AAD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4997DD03-2A95-4A3D-9A66-D587D41D0223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4997DD03-2A95-4A3D-9A66-D587D41D0223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4997DD03-2A95-4A3D-9A66-D587D41D0223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4997DD03-2A95-4A3D-9A66-D587D41D0223}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC5DA532-32D5-4D5E-B213-05E2568C47F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC5DA532-32D5-4D5E-B213-05E2568C47F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC5DA532-32D5-4D5E-B213-05E2568C47F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,5 +70,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{129AFFB0-773B-4F50-BFEC-E0856C19EED6} = {75D06657-8B12-429A-9094-C996B42DB484}
+		{52FD515F-8EB4-4111-9460-E87DDB3CC27A} = {75D06657-8B12-429A-9094-C996B42DB484}
+		{7906A2F8-AB3D-426E-8D85-844C6DC18F22} = {75D06657-8B12-429A-9094-C996B42DB484}
+		{0696939C-5167-46DF-8200-A7FCCD5A9A08} = {75D06657-8B12-429A-9094-C996B42DB484}
+		{DDAF5905-C8C2-4AB0-9053-73977F74AAD9} = {780487AA-317B-4177-88B6-FAF324C02FAE}
+		{4997DD03-2A95-4A3D-9A66-D587D41D0223} = {780487AA-317B-4177-88B6-FAF324C02FAE}
+		{DC5DA532-32D5-4D5E-B213-05E2568C47F3} = {780487AA-317B-4177-88B6-FAF324C02FAE}
 	EndGlobalSection
 EndGlobal
