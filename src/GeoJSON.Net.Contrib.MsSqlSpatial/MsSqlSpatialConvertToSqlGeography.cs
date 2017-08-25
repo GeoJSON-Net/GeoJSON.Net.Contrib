@@ -64,7 +64,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 		private static void Internal_FillGeographyBuilder(SqlGeographyBuilder gb, MultiPoint multiPoint)
 		{
 			gb.BeginGeography(OpenGisGeographyType.MultiPoint);
-			List<Point> coords = multiPoint.Coordinates as List<Point>;
+			List<Point> coords = multiPoint.Coordinates.ToList();
 			foreach (var coord in coords)
 			{
 				Position pos = coord.Coordinates as Position;

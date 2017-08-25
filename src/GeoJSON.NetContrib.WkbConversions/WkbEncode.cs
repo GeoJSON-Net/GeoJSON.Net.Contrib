@@ -12,7 +12,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
     /// </summary>
     public static class WkbEncode
     {
-        private static byte _wKBXDR = 0x00;       // Big Endian
+        //private static byte _wKBXDR = 0x00;       // Big Endian
         private static byte _wKBNDR = 0x01;       // Little Endian
 
         public static byte[] Encode(IGeometryObject geometryObject)

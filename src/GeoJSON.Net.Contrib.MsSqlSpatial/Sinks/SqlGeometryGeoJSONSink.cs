@@ -215,21 +215,18 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 					geometry = new LineString(geomPart[0]);
 					break;
 				case OpenGisGeometryType.MultiLineString:
-					geometry = new MultiLineString(geomPart.Select(line => new LineString(line))
-																																		.ToList()
-																															);
+                    geometry = new MultiLineString(geomPart.Select(line => new LineString(line)).ToList());
 					break;
 				case OpenGisGeometryType.Polygon:
-					geometry = new Polygon(geomPart.Select(line => new LineString(line))
-																																		.ToList()
-																															);
+                    geometry = new Polygon(geomPart.Select(line => new LineString(line)).ToList());
 					break;
 				case OpenGisGeometryType.MultiPolygon:
-					//geometry = new MultiPolygon(geomPart.Skip(1)
-					//																							.Select(g => (Polygon)ConstructGeometryPart(g))
-					//																							.ToList());
-					geometry = new MultiPolygon();
-					break;
+                    //geometry = new MultiPolygon(geomPart.Skip(1)
+                    //.Select(g => (Polygon)ConstructGeometryPart(g))
+                    //.ToList());
+                    geometry = new MultiPolygon(geomPart.Select(polygon => new Polygon(geomPart.Select(line => new LineString(line)))));
+
+                    break;
 
 				default:
 					throw new NotSupportedException("Geometry type " + geomPart.GeometryType.ToString() + " is not supported yet.");

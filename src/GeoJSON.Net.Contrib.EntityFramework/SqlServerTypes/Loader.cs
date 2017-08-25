@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Data.Entity.SqlServer;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace SqlServerTypes
+namespace GeoJSON.Net.Contrib.EntityFramework
 {
     /// <summary>
     /// Utility methods related to CLR Types for SQL Server 
@@ -21,6 +22,8 @@ namespace SqlServerTypes
         /// </param>
         public static void LoadNativeAssemblies(string rootApplicationPath)
         {
+            SqlProviderServices.SqlServerTypesAssemblyName = "Microsoft.SqlServer.Types, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91";
+
             var nativeBinaryPath = IntPtr.Size > 4
                 ? Path.Combine(rootApplicationPath, @"SqlServerTypes\x64\")
                 : Path.Combine(rootApplicationPath, @"SqlServerTypes\x86\");
