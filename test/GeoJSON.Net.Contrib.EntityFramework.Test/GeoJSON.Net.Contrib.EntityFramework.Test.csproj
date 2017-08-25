@@ -83,6 +83,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="EntityFrameworkConvertTests.cs" />
+    <Compile Include="ToDbGeometryTests.cs" />
+    <Compile Include="ToDbGeographyTests.cs" />
+    <Compile Include="ToGeoJSONsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +96,10 @@
     <ProjectReference Include="..\..\src\GeoJSON.Net.Contrib.EntityFramework\GeoJSON.Net.Contrib.EntityFramework.csproj">
       <Project>{52fd515f-8eb4-4111-9460-e87ddb3cc27a}</Project>
       <Name>GeoJSON.Net.Contrib.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\GeoJSON.NetContrib.WkbConversions\GeoJSON.NetContrib.WkbConversions.csproj">
+      <Project>{7906A2F8-AB3D-426E-8D85-844C6DC18F22}</Project>
+      <Name>GeoJSON.NetContrib.WkbConversions</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

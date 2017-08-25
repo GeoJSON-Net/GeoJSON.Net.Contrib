@@ -1,6 +1,6 @@
 ﻿namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
 {
-    internal enum WkbGeometryType : uint
+    public enum WkbGeometryType : uint
     {
         WkbPoint = 1,
         WkbLineString = 2,
