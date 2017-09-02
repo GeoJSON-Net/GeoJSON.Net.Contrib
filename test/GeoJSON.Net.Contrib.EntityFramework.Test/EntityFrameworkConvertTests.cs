@@ -22,7 +22,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
         public EntityFrameworkConvertTests()
         {
-            Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);            
+            //Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);            
         
             point = new Point(new Position(53.2455662, 90.65464646));
 

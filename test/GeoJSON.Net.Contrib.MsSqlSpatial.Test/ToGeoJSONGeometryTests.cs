@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GeoJSON.Net.Geometry;
 using GeoJSON.Net.Contrib.MsSqlSpatial;
 using System.Data.SqlTypes;
+using System;
 
 namespace GeoJSON.Net.MsSqlSpatial.Tests
 {
