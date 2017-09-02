@@ -2,12 +2,12 @@
 {
     public enum WkbGeometryType : uint
     {
-        WkbPoint = 1,
-        WkbLineString = 2,
-        WkbPolygon = 3,
-        WkbMultiPoint = 4,
-        WkbMultiLineString = 5,
-        WkbMultiPolygon = 6,
-        WkbGeometryCollection = 7
+        Point = 1,
+        LineString = 2,
+        Polygon = 3,
+        MultiPoint = 4,
+        MultiLineString = 5,
+        MultiPolygon = 6,
+        GeometryCollection = 7
     };
 }

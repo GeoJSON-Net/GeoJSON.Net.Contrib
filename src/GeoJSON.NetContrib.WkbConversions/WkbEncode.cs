@@ -43,7 +43,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
             var v_Point = geometryObject as Point;
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.WkbPoint);
+            binaryWriter.Write((int)WkbGeometryType.Point);
             var position = v_Point.Coordinates as Position;
             binaryWriter.Write(position.Longitude);
             binaryWriter.Write(position.Latitude);
@@ -54,7 +54,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
             var multiPoint = geometryObject as MultiPoint;
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.WkbMultiPoint);
+            binaryWriter.Write((int)WkbGeometryType.MultiPoint);
             binaryWriter.Write((int)multiPoint.Coordinates.Count);
 
             foreach(Point point in multiPoint.Coordinates)
@@ -66,7 +66,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
         private static void Pointold(BinaryWriter binaryWriter, Position position)
         {
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.WkbPoint);
+            binaryWriter.Write((int)WkbGeometryType.Point);
             binaryWriter.Write(position.Longitude);
             binaryWriter.Write(position.Latitude);
         }
@@ -86,7 +86,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
             var v_Polyline = geometryObject as LineString;
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.WkbLineString);
+            binaryWriter.Write((int)WkbGeometryType.LineString);
             binaryWriter.Write((int)v_Polyline.Coordinates.Count);
 
             Points(binaryWriter, v_Polyline.Coordinates.ToList());
@@ -97,7 +97,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
             var multiLineString = GeometryObject as MultiLineString;
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.WkbMultiLineString);
+            binaryWriter.Write((int)WkbGeometryType.MultiLineString);
             binaryWriter.Write((int)multiLineString.Coordinates.Count);
 
             foreach (LineString lineString in multiLineString.Coordinates)
@@ -111,7 +111,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
             var polygon = geometryObject as Polygon;
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.WkbPolygon);
+            binaryWriter.Write((int)WkbGeometryType.Polygon);
 
             var numberOfRings = polygon.Coordinates.Count;
             binaryWriter.Write(numberOfRings);
@@ -128,7 +128,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
             var multiPolygon = geometryObject as MultiPolygon;
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.WkbMultiPolygon);
+            binaryWriter.Write((int)WkbGeometryType.MultiPolygon);
             binaryWriter.Write((int)multiPolygon.Coordinates.Count);
 
             foreach(Polygon polygon in multiPolygon.Coordinates)
@@ -142,7 +142,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
             var geometryCollection = geometryObject as GeometryCollection;
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((Int32)WkbGeometryType.WkbGeometryCollection);
+            binaryWriter.Write((Int32)WkbGeometryType.GeometryCollection);
             binaryWriter.Write((Int32)geometryCollection.Geometries.Count);
 
             foreach(IGeometryObject geometry in geometryCollection.Geometries)

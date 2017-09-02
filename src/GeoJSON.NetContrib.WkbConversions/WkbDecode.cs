@@ -23,7 +23,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.WkbPoint, wkbGeometryType);
+            CheckType(WkbGeometryType.Point, wkbGeometryType);
 
             Position geographicalPosition = GetGeographicPosition(wkb, ref wkbPosition);
 
@@ -34,7 +34,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.WkbLineString, wkbGeometryType);
+            CheckType(WkbGeometryType.LineString, wkbGeometryType);
 
             Position[] positions = ParsePositions(wkb, ref wkbPosition);
 
@@ -45,7 +45,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.WkbPolygon, wkbGeometryType);
+            CheckType(WkbGeometryType.Polygon, wkbGeometryType);
 
             var numberOfLines = GetUInt32(wkb, ref wkbPosition);
             var lines = new List<LineString>();
@@ -64,7 +64,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.WkbMultiPoint, wkbGeometryType);
+            CheckType(WkbGeometryType.MultiPoint, wkbGeometryType);
 
             var numberOfPoints = GetUInt32(wkb, ref wkbPosition);
             var points = new List<Point>();
@@ -81,7 +81,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.WkbMultiLineString, wkbGeometryType);
+            CheckType(WkbGeometryType.MultiLineString, wkbGeometryType);
 
             var numberOfLines = GetUInt32(wkb, ref wkbPosition);
             var lines = new List<LineString>();
@@ -98,7 +98,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.WkbMultiPolygon, wkbGeometryType);
+            CheckType(WkbGeometryType.MultiPolygon, wkbGeometryType);
 
             var numberOfPolygons = GetUInt32(wkb, ref wkbPosition);
             var polygons = new List<Polygon>();
@@ -115,7 +115,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.WkbGeometryCollection, wkbGeometryType);
+            CheckType(WkbGeometryType.GeometryCollection, wkbGeometryType);
 
             var numberOfShapes = GetUInt32(wkb, ref wkbPosition);
             var geometries = new List<IGeometryObject>();
@@ -134,25 +134,25 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
 
             switch (v_type)
             {
-                case (uint)WkbGeometryType.WkbPoint:
+                case (uint)WkbGeometryType.Point:
                     return ParsePoint(wkb, ref wkbPosition);
 
-                case (uint)WkbGeometryType.WkbLineString:
+                case (uint)WkbGeometryType.LineString:
                     return ParseLineString(wkb, ref wkbPosition);
 
-                case (uint)WkbGeometryType.WkbPolygon:
+                case (uint)WkbGeometryType.Polygon:
                     return ParsePolygon(wkb, ref wkbPosition);
 
-                case (uint)WkbGeometryType.WkbMultiPoint:
+                case (uint)WkbGeometryType.MultiPoint:
                     return ParseMultiPoint(wkb, ref wkbPosition);
 
-                case (uint)WkbGeometryType.WkbMultiLineString:
+                case (uint)WkbGeometryType.MultiLineString:
                     return ParseMultiLineString(wkb, ref wkbPosition);
 
-                case (uint)WkbGeometryType.WkbMultiPolygon:
+                case (uint)WkbGeometryType.MultiPolygon:
                     return ParseMultiPolygon(wkb, ref wkbPosition);
 
-                case (uint)WkbGeometryType.WkbGeometryCollection:
+                case (uint)WkbGeometryType.GeometryCollection:
                     return ParseGeometryCollection(wkb, ref wkbPosition);
 
                 default:

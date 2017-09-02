@@ -1,5 +1,5 @@
-﻿using GeoJSON.Net.Contrib.EntityFramework.WkbConversions;
-using System.Linq;
+﻿using System.Linq;
+using GeoJSON.Net.Contrib.EntityFramework.WkbConversions;
 using Xunit;
 
 namespace GeoJSON.Net.Contrib.EntityFramework.Test
@@ -13,8 +13,8 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(point);
             Assert.NotNull(dbPoint);
-            //Assert.Equal(dbPoint.SpatialTypeName, WkbGeometryType.WkbPoint.ToString());
-            Assert.Equal(dbPoint.PointCount, 1);
+            Assert.Equal(WkbGeometryType.Point.ToString(), dbPoint.SpatialTypeName);
+            Assert.Equal(1, dbPoint.PointCount);
         }
 
         [Fact]
@@ -24,8 +24,8 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(multiPoint);
             Assert.NotNull(dbMultiPoint);
-            //Assert.Equal(dbMultiPoint.SpatialTypeName, WkbGeometryType.WkbMultiPoint.ToString());
-            Assert.Equal(dbMultiPoint.PointCount, multiPoint.Coordinates.Count);
+            Assert.Equal(WkbGeometryType.MultiPoint.ToString(), dbMultiPoint.SpatialTypeName);
+            Assert.Equal(multiPoint.Coordinates.Count, dbMultiPoint.PointCount);
         }
 
         [Fact]
@@ -35,8 +35,8 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(lineString);
             Assert.NotNull(dbLineString);
-            //Assert.Equal(dbLineString.SpatialTypeName, WkbGeometryType.WkbMultiLineString.ToString());
-            Assert.Equal(dbLineString.PointCount, lineString.Coordinates.Count);
+            Assert.Equal(WkbGeometryType.LineString.ToString(), dbLineString.SpatialTypeName);
+            Assert.Equal(lineString.Coordinates.Count, dbLineString.PointCount);
         }
 
         [Fact]
@@ -46,9 +46,9 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(multiLineString);
             Assert.NotNull(dbMultiLineString);
-            //Assert.Equal(dbMultiLineString.SpatialTypeName, WkbGeometryType.WkbMultiLineString.ToString());
+            Assert.Equal(WkbGeometryType.MultiLineString.ToString(), dbMultiLineString.SpatialTypeName);
             Assert.Equal(dbMultiLineString.ElementCount, multiLineString.Coordinates.Count);
-            Assert.Equal(dbMultiLineString.PointCount, multiLineString.Coordinates.SelectMany(ls => ls.Coordinates).Count());
+            Assert.Equal(multiLineString.Coordinates.SelectMany(ls => ls.Coordinates).Count(), dbMultiLineString.PointCount);
         }
 
         [Fact]
@@ -58,8 +58,8 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(polygon);
             Assert.NotNull(dbPolygon);
-            //Assert.Equal(dbPolygon.SpatialTypeName, WkbGeometryType.WkbPolygon.ToString());
-            Assert.Equal(dbPolygon.PointCount, polygon.Coordinates.SelectMany(ls => ls.Coordinates).Count());
+            Assert.Equal(WkbGeometryType.Polygon.ToString(), dbPolygon.SpatialTypeName);
+            Assert.Equal(polygon.Coordinates.SelectMany(ls => ls.Coordinates).Count(), dbPolygon.PointCount);
         }
 
         [Fact]
@@ -69,8 +69,8 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(polygonWithHole);
             Assert.NotNull(dbPolygon);
-            //Assert.Equal(dbPolygon.SpatialTypeName, WkbGeometryType.WkbPolygon.ToString());
-            Assert.Equal(dbPolygon.PointCount, polygonWithHole.Coordinates.SelectMany(ls => ls.Coordinates).Count());
+            Assert.Equal(WkbGeometryType.Polygon.ToString(), dbPolygon.SpatialTypeName);
+            Assert.Equal(polygonWithHole.Coordinates.SelectMany(ls => ls.Coordinates).Count(), dbPolygon.PointCount);
         }
 
         [Fact]
@@ -80,8 +80,8 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(polygonWithHoleReverseWinding);
             Assert.NotNull(dbPolygon);
-            //Assert.Equal(dbPolygon.SpatialTypeName, WkbGeometryType.WkbPolygon.ToString());
-            Assert.Equal(dbPolygon.PointCount, polygonWithHoleReverseWinding.Coordinates.SelectMany(ls => ls.Coordinates).Count());
+            Assert.Equal(WkbGeometryType.Polygon.ToString(), dbPolygon.SpatialTypeName);
+            Assert.Equal(polygonWithHoleReverseWinding.Coordinates.SelectMany(ls => ls.Coordinates).Count(), dbPolygon.PointCount);
         }
 
         [Fact]
@@ -91,9 +91,9 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(multiPolygon);
             Assert.NotNull(dbMultiPolygon);
-            //Assert.Equal(dbMultiPolygon.SpatialTypeName, WkbGeometryType.WkbMultiPolygon.ToString());
-            Assert.Equal(dbMultiPolygon.ElementCount, multiPolygon.Coordinates.Count);
-            Assert.Equal(dbMultiPolygon.PointCount, multiPolygon.Coordinates.SelectMany(p => p.Coordinates).SelectMany(ls => ls.Coordinates).Count());
+            Assert.Equal(WkbGeometryType.MultiPolygon.ToString(), dbMultiPolygon.SpatialTypeName);
+            Assert.Equal(multiPolygon.Coordinates.Count, dbMultiPolygon.ElementCount);
+            Assert.Equal(multiPolygon.Coordinates.SelectMany(p => p.Coordinates).SelectMany(ls => ls.Coordinates).Count(), dbMultiPolygon.PointCount);
         }
 
         [Fact]
@@ -103,8 +103,8 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 
             Assert.NotNull(geomCollection);
             Assert.NotNull(dbGeomCol);
-            //Assert.Equal(dbGeomCol.SpatialTypeName, WkbGeometryType.WkbGeometryCollection.ToString());
-            Assert.Equal(dbGeomCol.ElementCount, geomCollection.Geometries.Count);
+            Assert.Equal(WkbGeometryType.GeometryCollection.ToString(), dbGeomCol.SpatialTypeName);
+            Assert.Equal(geomCollection.Geometries.Count, dbGeomCol.ElementCount);
         }
     }
 }
