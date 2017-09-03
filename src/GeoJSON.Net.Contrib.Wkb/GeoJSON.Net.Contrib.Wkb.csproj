@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="WkbConverter.cs" />
+    <Compile Include="WkbConverterToWkb.cs" />
+    <Compile Include="WkbConverterToGeoJsonObject.cs" />
+    <Compile Include="WkbConverterToGeoJsonGeometry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

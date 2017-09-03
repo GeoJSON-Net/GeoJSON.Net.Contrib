@@ -3,9 +3,9 @@ using System.Linq;
 using GeoJSON.Net.Feature;
 using GeoJSON.Net.Geometry;
 
-namespace GeoJSON.Net.Contrib.EntityFramework.Test
+namespace GeoJSON.Net.Contrib.Wkb.Test
 {
-    public partial class EntityFrameworkConvertTests
+    public partial class WkbConversionsTests
     {
         Point point;
         MultiPoint multiPoint;
@@ -19,7 +19,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
         Feature.Feature feature;
         FeatureCollection featureCollection;
 
-        public EntityFrameworkConvertTests()
+        public WkbConversionsTests()
         {
             point = new Point(new Position(53.2455662, 90.65464646));
 
@@ -123,7 +123,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
             polygon = new Polygon(new List<LineString>
                 {
                     new LineString(new List<Position>
-                    {                        
+                    {
                         new Position(52.379790828551016, 5.3173828125),
                         new Position(52.303440474272755, 5.386047363281249, 4.23),
                         new Position(52.36721467920585, 5.456085205078125),

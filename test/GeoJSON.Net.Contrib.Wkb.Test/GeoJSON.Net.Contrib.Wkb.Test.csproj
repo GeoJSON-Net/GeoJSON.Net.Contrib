@@ -73,7 +73,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="WkbConverterTests.cs" />
+    <Compile Include="EncodeDecodeTests.cs" />
+    <Compile Include="WkbConversionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
