@@ -21,7 +21,7 @@ namespace GeoJSON.Net.Contrib.Wkb
 
         public static T ToGeoJSONObject<T>(this byte[] wkb) where T : GeoJSONObject
         {
-            return WkbDecode.Decode(wkb) as T;
+            return wkb.ToGeoJSONGeometry() as T;
         }
     }
 }

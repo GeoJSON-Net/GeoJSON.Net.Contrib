@@ -33,12 +33,12 @@ namespace GeoJSON.Net.Contrib.EntityFramework
 
         public static T ToGeoJSONObject<T>(this DbGeography dbGeography) where T : GeoJSONObject
         {
-            return WkbDecode.Decode(dbGeography.AsBinary()) as T;
+            return dbGeography.ToGeoJSONGeometry() as T;
         }
 
         public static T ToGeoJSONObject<T>(this DbGeometry dbGeometry) where T : GeoJSONObject
         {
-            return WkbDecode.Decode(dbGeometry.AsBinary()) as T;
+            return dbGeometry.ToGeoJSONGeometry() as T;
         }
     }
 }
