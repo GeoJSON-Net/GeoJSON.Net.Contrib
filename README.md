@@ -36,3 +36,50 @@ LineString lineString = WktConvert.GeoJSONObject<LineString>("LINESTRING(1 47,1 
 // LineString IGeometryObject from WKT
 IGeometryObject lineStringGeom = WktConvert.GeoJSONGeometry("LINESTRING(1 47,1 46,0 46,0 47,1 47)");
 ```
+
+
+## GeoJSON.Net.Contrib.EntityFramework
+Allows conversion from / to EntityFramework geometry and geography data types.
+
+[NuGet package](https://www.nuget.org/packages/GeoJSON.Net.Contrib.EntityFramework):
+`Install-Package GeoJSON.Net.Contrib.EntityFramework`
+
+### Conversion examples:
+
+```csharp
+using GeoJSON.Net.Geometry;
+using Microsoft.SqlServer.Types;
+using GeoJSON.Net.Contrib.EntityFramework;
+
+// DbGeography sample point
+var dbGeographyPoint = DbGeography.FromText("POINT(30 10)", 4326);
+
+// DbGeography -> GeoJSON example
+Point point = dbGeographyPoint.ToGeoJSONObject<Point>();
+
+// GeoJSON -> DbGeography example
+DbGeography dbGeographyPoint = point.ToDbGeography();
+```
+
+
+## GeoJSON.Net.Contrib.Wkb
+Allows conversion from / to Wkb binary types.
+
+[NuGet package](https://www.nuget.org/packages/GeoJSON.Net.Contrib.Wkb):
+`Install-Package GeoJSON.Net.Contrib.Wkb`
+
+### Conversion examples:
+
+```csharp
+using GeoJSON.Net.Geometry;
+using GeoJSON.Net.Contrib.Wkb;
+
+// GeoJson sample point
+Point point = new Point(new Position(53.2455662, 90.65464646));
+
+// GeoJson -> Wkb example
+byte[] wkbPoint = point.ToWkb();
+
+// Wkb -> GeoJson example
+Point pointFromWkb = wkbPoint.ToGeoJSONObject<Point>();
+```
