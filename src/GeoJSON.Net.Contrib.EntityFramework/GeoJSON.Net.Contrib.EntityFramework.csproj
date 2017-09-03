@@ -60,7 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFrameworkConvert.cs" />
+    <Compile Include="EntityFrameworkConvertToGeoJsonObject.cs" />
+    <Compile Include="EntityFrameworkConvertToGeoJsonGeometry.cs" />
+    <Compile Include="EntityFrameworkConvertToDbGeometry.cs" />
+    <Compile Include="EntityFrameworkConvertToDbGeography.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
