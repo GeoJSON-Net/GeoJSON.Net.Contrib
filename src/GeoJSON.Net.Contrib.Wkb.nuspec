@@ -14,7 +14,6 @@
     <projectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/README.md</projectUrl>
     <dependencies>
 		<dependency id="GeoJSON.Net" version="1.1.64" />
-		<dependency id="Microsoft.SqlServer.Types" version="14.0.314.7" />
     </dependencies>
     <tags>GeoJSON JSON List Wkb Converters Conversion</tags>
   </metadata>
