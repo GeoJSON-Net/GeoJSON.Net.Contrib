@@ -7,14 +7,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides GeoJSON.Net Converters from / to the MS SQL Spatial types.</description>
     <summary>This package contains custom JSON converters to be used with the base GeoJSON.Net library to bridge from and to the Microsoft SQL Spatial types.</summary>
-    <releaseNotes>Updated to .Net 4.5 and Json.net 8.0.2 and several bug fixes..</releaseNotes>
+    <releaseNotes>Updated to GeoJson.Net 1.1.64 and Microsoft.SqlServer.Types 14.0.314.7..</releaseNotes>
     <language>en-US</language>
     <copyright>Joerg Battermann and Contributors (!)</copyright>
     <licenseUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/README.md</projectUrl>
     <dependencies>
-      <dependency id="GeoJSON.Net" version="0.1.47" />
-      <dependency id="Microsoft.SqlServer.Types" version="11.0.2" />
+	  <dependency id="GeoJSON.Net" version="1.1.64" />
+      <dependency id="Microsoft.SqlServer.Types" version="14.0.314.7" />
     </dependencies>
     <tags>GeoJSON JSON List SQL Spatial Converters Conversion</tags>
   </metadata>
