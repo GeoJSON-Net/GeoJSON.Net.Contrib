@@ -8,7 +8,8 @@ namespace GeoJSON.Net.Contrib.EntityFramework
     {
         public static DbGeography ToDbGeography(this IGeometryObject geometryObject)
         {
-            return DbGeography.FromBinary(WkbEncode.Encode(geometryObject));
+            DbGeography value = DbGeography.FromBinary(WkbEncode.Encode(geometryObject));
+            return value;
         }
     }
 }
