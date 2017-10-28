@@ -18,6 +18,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+# SQL Server types
+SqlServerTypes/
+
 # Roslyn cache directories
 *.ide/
 
@@ -149,7 +152,6 @@ csx/
 AppPackages/
 
 # Others
-sql/
 *.Cache
 ClientBin/
 [Ss]tyle[Cc]op.*
