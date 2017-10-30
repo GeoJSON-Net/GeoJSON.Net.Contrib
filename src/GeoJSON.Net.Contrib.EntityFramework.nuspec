@@ -1,27 +1,28 @@
-<?xml version="1.0"?>
-<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <id>GeoJSON.Net.Contrib.EntityFramework</id>
-    <version>$version$</version>
-    <authors>Alvaro Montero Gonzalez</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Provides GeoJSON.Net Converters from / to the EntityFramework Spatial types.</description>
-    <summary>This package contains custom JSON converters to be used with the base GeoJSON.Net library to bridge from and to the EntityFramework Spatial types.</summary>
-    <releaseNotes>first release</releaseNotes>
-    <language>en-US</language>
-    <copyright>Joerg Battermann and Contributors (!)</copyright>
-    <licenseUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/README.md</projectUrl>
-    <dependencies>
-	  <dependency id="GeoJSON.Net" version="1.1.64" />
-	  <dependency id="EntityFramework" version="6.1.3" />
-      <dependency id="Microsoft.SqlServer.Types" version="14.0.314.7" />
-    </dependencies>
-    <tags>GeoJSON JSON List EntityFramework Spatial Converters Conversion</tags>
-  </metadata>
-  <files>
-    <file src="GeoJSON.Net.Contrib.EntityFramework\bin\Release\GeoJSON.Net.Contrib.EntityFramework.dll" target="lib\net452" />
-    <file src="GeoJSON.Net.Contrib.EntityFramework\bin\Release\GeoJSON.Net.Contrib.EntityFramework.pdb" target="lib\net452" />
-    <file src="GeoJSON.Net.Contrib.EntityFramework\bin\Release\GeoJSON.Net.Contrib.EntityFramework.xml" target="lib\net452" />
-  </files>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>GeoJSON.Net.Contrib.EntityFramework</id>
+        <version>0.1.0</version>
+        <authors>Alvaro Montero Gonzalez</authors>
+        <owners>Xavier Fischer</owners>
+        <licenseUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib/blob/master/README.md</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Provides GeoJSON.Net Converters from / to the EntityFramework Spatial types.</description>
+        <summary>This package contains custom JSON converters to be used with the base GeoJSON.Net library to bridge from and to the EntityFramework Spatial types.</summary>
+        <releaseNotes>first release</releaseNotes>
+        <copyright>Joerg Battermann and Contributors (!)</copyright>
+        <language>en-US</language>
+        <tags>GeoJSON JSON List EntityFramework Spatial Converters Conversion</tags>
+        <dependencies>
+            <dependency id="GeoJSON.Net" version="1.1.64" />
+            <dependency id="EntityFramework" version="6.1.3" />
+            <dependency id="GeoJSON.Net.Contrib.Wkb" version="0.1.1" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="GeoJSON.Net.Contrib.EntityFramework\bin\Release\GeoJSON.Net.Contrib.EntityFramework.dll" target="lib\net452\GeoJSON.Net.Contrib.EntityFramework.dll" />
+        <file src="GeoJSON.Net.Contrib.EntityFramework\bin\Release\GeoJSON.Net.Contrib.EntityFramework.pdb" target="lib\net452\GeoJSON.Net.Contrib.EntityFramework.pdb" />
+        <file src="GeoJSON.Net.Contrib.EntityFramework\bin\Release\GeoJSON.Net.Contrib.EntityFramework.XML" target="lib\net452\GeoJSON.Net.Contrib.EntityFramework.XML" />
+    </files>
 </package>

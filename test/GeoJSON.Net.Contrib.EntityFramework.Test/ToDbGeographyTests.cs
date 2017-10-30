@@ -1,6 +1,6 @@
-﻿using System;
+﻿using GeoJSON.Net.Contrib.Wkb.Conversions;
+using System;
 using System.Linq;
-using GeoJSON.Net.Contrib.EntityFramework.WkbConversions;
 using Xunit;
 
 namespace GeoJSON.Net.Contrib.EntityFramework.Test

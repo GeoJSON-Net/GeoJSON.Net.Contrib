@@ -53,12 +53,9 @@
     <Compile Include="WkbConverterToGeoJsonObject.cs" />
     <Compile Include="WkbConverterToGeoJsonGeometry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GeoJSON.NetContrib.WkbConversions\GeoJSON.NetContrib.WkbConversions.csproj">
-      <Project>{7906a2f8-ab3d-426e-8d85-844c6dc18f22}</Project>
-      <Name>GeoJSON.NetContrib.WkbConversions</Name>
-    </ProjectReference>
+    <Compile Include="WkbDecode.cs" />
+    <Compile Include="WkbEncode.cs" />
+    <Compile Include="WkbGeometryType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

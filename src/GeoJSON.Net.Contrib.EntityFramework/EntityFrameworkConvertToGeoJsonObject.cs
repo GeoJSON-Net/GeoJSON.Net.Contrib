@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity.Spatial;
-using GeoJSON.Net.Contrib.EntityFramework.WkbConversions;
 using GeoJSON.Net.Geometry;
 
 namespace GeoJSON.Net.Contrib.EntityFramework

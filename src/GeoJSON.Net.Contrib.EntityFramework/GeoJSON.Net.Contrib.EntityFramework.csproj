@@ -69,9 +69,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GeoJSON.NetContrib.WkbConversions\GeoJSON.NetContrib.WkbConversions.csproj">
-      <Project>{7906a2f8-ab3d-426e-8d85-844c6dc18f22}</Project>
-      <Name>GeoJSON.NetContrib.WkbConversions</Name>
+    <ProjectReference Include="..\GeoJSON.Net.Contrib.Wkb\GeoJSON.Net.Contrib.Wkb.csproj">
+      <Project>{0696939c-5167-46df-8200-a7fccd5a9a08}</Project>
+      <Name>GeoJSON.Net.Contrib.Wkb</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
