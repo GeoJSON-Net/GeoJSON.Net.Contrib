@@ -1,4 +1,10 @@
-# GeoJSON.Net.Contrib [![Build status](https://ci.appveyor.com/api/projects/status/8i73123t14xro67k)](https://ci.appveyor.com/project/GeojsonNet/geojson-net-contrib)
+[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.MsSqlSpatial.svg?style=flat)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.MsSqlSpatial/)
+[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.Wkb.svg?style=flat)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.Wkb/) 
+[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.EntityFramework.svg?style=flat)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.EntityFramework/) 
+[![Build status](https://ci.appveyor.com/api/projects/status/8i73123t14xro67k)](https://ci.appveyor.com/project/GeojsonNet/geojson-net-contrib)
+
+
+# GeoJSON.Net.Contrib 
 Repository for all GeoJSON.Net *.Contrib projects
 
 ## GeoJSON.Net.Contrib.MsSqlSpatial
