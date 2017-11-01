@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("GeoJSON.Net.Contrib.EntityFramework.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Alstom")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("GeoJSON.Net.Contrib.EntityFramework.Test")]
-[assembly: AssemblyCopyright("Copyright © Alstom 2017")]
+[assembly: AssemblyCopyright("Copyright © 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
