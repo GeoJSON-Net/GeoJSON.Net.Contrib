@@ -1,6 +1,6 @@
-[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.MsSqlSpatial.svg?style=flat)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.MsSqlSpatial/)
-[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.Wkb.svg?style=flat)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.Wkb/) 
-[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.EntityFramework.svg?style=flat)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.EntityFramework/) 
+[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.MsSqlSpatial.svg?style=flat&label=nuget%20MsSqlSpatial)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.MsSqlSpatial/)
+[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.Wkb.svg?style=flat&label=nuget%20Wkb)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.Wkb/) 
+[![NuGet Version](http://img.shields.io/nuget/v/GeoJSON.NET.Contrib.EntityFramework.svg?style=flat&label=nuget%20EntityFramework)](https://www.nuget.org/packages/GeoJSON.NET.Contrib.EntityFramework/) 
 [![Build status](https://ci.appveyor.com/api/projects/status/8i73123t14xro67k?svg=true)](https://ci.appveyor.com/project/GeojsonNet/geojson-net-contrib)
 
 # GeoJSON.Net.Contrib 
