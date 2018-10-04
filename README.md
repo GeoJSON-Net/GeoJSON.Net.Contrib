@@ -53,7 +53,6 @@ Allows conversion from / to EntityFramework geometry and geography data types.
 
 ```csharp
 using GeoJSON.Net.Geometry;
-using Microsoft.SqlServer.Types;
 using GeoJSON.Net.Contrib.EntityFramework;
 
 // DbGeography sample point
