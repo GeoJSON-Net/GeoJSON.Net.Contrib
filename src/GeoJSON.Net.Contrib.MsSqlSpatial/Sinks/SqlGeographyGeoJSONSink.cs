@@ -27,6 +27,13 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 		double _lonMax = -180;
 		double _latMax = -90;
 
+	    private readonly bool _withBoundingBox;
+
+	    public SqlGeographyGeoJsonSink(bool withBoundingBox = true)
+	    {
+	        this._withBoundingBox = withBoundingBox;
+	    }
+
 		#region Sink implementation
 
 		public void BeginGeography(OpenGisGeographyType type)
@@ -136,7 +143,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 						List<IGeometryObject> subGeometries = _geomCollection.SubItems.Select(subItem => GeometryFromSinkGeometryCollection(subItem)).ToList();
 						_geometry = new GeometryCollection(subGeometries);
 
-						((GeometryCollection)_geometry).BoundingBoxes = this.BoundingBox;
+						((GeometryCollection)_geometry).BoundingBoxes = this._withBoundingBox ? this.BoundingBox : null;
 						break;
 					default:
 						throw new NotSupportedException("Geometry type " + _geomCollection.GeometryType.ToString() + " is not supported yet.");
@@ -155,33 +162,33 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 			{
 				case OpenGisGeographyType.Point:
 					_geometry = ConstructGeometryPart(sinkCollection[0]);
-					((Point)_geometry).BoundingBoxes = this.BoundingBox;
+					((Point)_geometry).BoundingBoxes = this._withBoundingBox ? this.BoundingBox : null;
 					break;
 				case OpenGisGeographyType.MultiPoint:
 					_geometry = new MultiPoint(sinkCollection.Skip(1)
 																										.Select(g => (Point)ConstructGeometryPart(g))
 																										.ToList());
-					((MultiPoint)_geometry).BoundingBoxes = this.BoundingBox;
+					((MultiPoint)_geometry).BoundingBoxes = this._withBoundingBox ? this.BoundingBox : null;
 					break;
 				case OpenGisGeographyType.LineString:
 					_geometry = ConstructGeometryPart(sinkCollection[0]);
-					((LineString)_geometry).BoundingBoxes = this.BoundingBox;
+					((LineString)_geometry).BoundingBoxes = this._withBoundingBox ? this.BoundingBox : null;
 					break;
 				case OpenGisGeographyType.MultiLineString:
 					_geometry = new MultiLineString(sinkCollection.Skip(1)
 																												.Select(g => (LineString)ConstructGeometryPart(g))
 																												.ToList());
-					((MultiLineString)_geometry).BoundingBoxes = this.BoundingBox;
+					((MultiLineString)_geometry).BoundingBoxes = this._withBoundingBox ? this.BoundingBox : null;
 					break;
 				case OpenGisGeographyType.Polygon:
 					_geometry = ConstructGeometryPart(sinkCollection.First());
-					((Polygon)_geometry).BoundingBoxes = this.BoundingBox;
+					((Polygon)_geometry).BoundingBoxes = this._withBoundingBox ? this.BoundingBox : null;
 					break;
 				case OpenGisGeographyType.MultiPolygon:
 					_geometry = new MultiPolygon(sinkCollection.Skip(1)
 																												.Select(g => (Polygon)ConstructGeometryPart(g))
 																												.ToList());
-					((MultiPolygon)_geometry).BoundingBoxes = this.BoundingBox;
+					((MultiPolygon)_geometry).BoundingBoxes = this._withBoundingBox ? this.BoundingBox : null;
 					break;
 				default:
 					throw new NotSupportedException("Geometry type " + sinkCollection.GeometryType.ToString() + " is not possible in GetConstructedGeometry.");
@@ -194,10 +201,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 
 		public double[] BoundingBox
 		{
-			get
-			{
-				return new double[] { _lonMin, _latMin, _lonMax, _latMax };
-			}
+			get { return this._withBoundingBox ? new double[] {_lonMin, _latMin, _lonMax, _latMax} : null; }
 		}
 
 		private IGeometryObject ConstructGeometryPart(SinkGeometry<OpenGisGeographyType> geomPart)

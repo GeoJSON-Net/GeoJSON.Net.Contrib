@@ -23,12 +23,13 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 	{
 		#region SqlGeometry to GeoJSON
 
-		/// <summary>
-		/// Converts a native Sql Server geometry (lat/lon) to GeoJSON geometry
-		/// </summary>
-		/// <param name="sqlGeometry">SQL Server geometry to convert</param>
-		/// <returns>GeoJSON geometry</returns>
-		public static IGeometryObject ToGeoJSONGeometry(this SqlGeometry sqlGeometry)
+	    /// <summary>
+	    /// Converts a native Sql Server geometry (lat/lon) to GeoJSON geometry
+	    /// </summary>
+	    /// <param name="sqlGeometry">SQL Server geometry to convert</param>
+	    /// <param name="withBoundingBox">Value indicating whether the feature's BoundingBox should be set.</param>
+	    /// <returns>GeoJSON geometry</returns>
+	    public static IGeometryObject ToGeoJSONGeometry(this SqlGeometry sqlGeometry, bool withBoundingBox = true)
 		{
 			if (sqlGeometry == null || sqlGeometry.IsNull)
 			{
@@ -43,17 +44,18 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			}
 
 			// Conversion using geometry sink
-			SqlGeometryGeoJsonSink sink = new SqlGeometryGeoJsonSink();
+			SqlGeometryGeoJsonSink sink = new SqlGeometryGeoJsonSink(withBoundingBox);
 			sqlGeometry.Populate(sink);
 			return sink.ConstructedGeometry;
 		}
 
-		/// <summary>
-		/// Converts a native Sql Server geometry (lat/lon) to GeoJSON geometry
-		/// </summary>
-		/// <param name="sqlGeometry">SQL Server geometry to convert</param>
-		/// <returns>GeoJSON geometry</returns>
-		public static T ToGeoJSONObject<T>(this  SqlGeometry sqlGeometry) where T : GeoJSONObject
+	    /// <summary>
+	    /// Converts a native Sql Server geometry (lat/lon) to GeoJSON geometry
+	    /// </summary>
+	    /// <param name="sqlGeometry">SQL Server geometry to convert</param>
+	    /// <param name="withBoundingBox">Value indicating whether the feature's BoundingBox should be set.</param>
+	    /// <returns>GeoJSON geometry</returns>
+	    public static T ToGeoJSONObject<T>(this  SqlGeometry sqlGeometry, bool withBoundingBox = true) where T : GeoJSONObject
 		{
 			if (sqlGeometry == null || sqlGeometry.IsNull)
 			{
@@ -72,7 +74,8 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			SqlGeometryGeoJsonSink sink = new SqlGeometryGeoJsonSink();
 			sqlGeometry.Populate(sink);
 			geoJSONobj = sink.ConstructedGeometry as T;
-			geoJSONobj.BoundingBoxes = sink.BoundingBox;
+
+		    geoJSONobj.BoundingBoxes = withBoundingBox ? sink.BoundingBox : null;
 
 			return geoJSONobj;
 		}
@@ -106,12 +109,13 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			return sink.ConstructedGeography;
 		}
 
-		/// <summary>
-		/// Converts a native Sql Server geography to GeoJSON geometry
-		/// </summary>
-		/// <param name="sqlGeography">SQL Server geography to convert</param>
-		/// <returns>GeoJSON geometry</returns>
-		public static T ToGeoJSONObject<T>(this SqlGeography sqlGeography) where T : GeoJSONObject
+	    /// <summary>
+	    /// Converts a native Sql Server geography to GeoJSON geometry
+	    /// </summary>
+	    /// <param name="sqlGeography">SQL Server geography to convert</param>
+	    /// <param name="withBoundingBox">Value indicating whether the feature's BoundingBox should be set.</param>
+	    /// <returns>GeoJSON geometry</returns>
+	    public static T ToGeoJSONObject<T>(this SqlGeography sqlGeography, bool withBoundingBox = true) where T : GeoJSONObject
 		{
 			if (sqlGeography == null || sqlGeography.IsNull)
 			{
@@ -130,7 +134,7 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial
 			SqlGeographyGeoJsonSink sink = new SqlGeographyGeoJsonSink();
 			sqlGeography.Populate(sink);
 			geoJSONobj = sink.ConstructedGeography as T;
-			geoJSONobj.BoundingBoxes = sink.BoundingBox;
+		    geoJSONobj.BoundingBoxes = withBoundingBox ? sink.BoundingBox : null;
 
 			return geoJSONobj;
 		}

@@ -228,6 +228,106 @@ namespace GeoJSON.Net.MsSqlSpatial.Tests
 
         }
 
+        [TestMethod]
+        [TestCategory("ToGeoJSONGeography")]
+        public void TestGeometryCollectionWithoutBoundingBox()
+        {
+            var geoJSONobj = this.geomCol.ToGeoJSONObject<GeometryCollection>(false);
+
+            Assert.IsNotNull(geoJSONobj);
+            Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.GeometryCollection);
+            Assert.IsNull(geoJSONobj.BoundingBoxes);
+            Assert.AreEqual(geoJSONobj.Geometries.Count, 3);
+            Assert.AreEqual(geoJSONobj.Geometries[0].Type, GeoJSONObjectType.Polygon);
+            Assert.AreEqual(geoJSONobj.Geometries[1].Type, GeoJSONObjectType.Point);
+            Assert.AreEqual(geoJSONobj.Geometries[2].Type, GeoJSONObjectType.MultiLineString);
+        }
+
+        [TestMethod]
+        [TestCategory("ToGeoJSONGeography")]
+        public void TestLineStringWithoutBoundingBox()
+        {
+            var geoJSONobj = this.lineString.ToGeoJSONObject<LineString>(false);
+
+            Assert.IsNotNull(geoJSONobj);
+            Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.LineString);
+            Assert.IsNull(geoJSONobj.BoundingBoxes);
+        }
+
+        [TestMethod]
+        [TestCategory("ToGeoJSONGeography")]
+        public void TestMultiLineStringWithoutBoundingBox()
+        {
+            var geoJSONobj = this.multiLineString.ToGeoJSONObject<MultiLineString>(false);
+
+            Assert.IsNotNull(geoJSONobj);
+            Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.MultiLineString);
+            Assert.IsNull(geoJSONobj.BoundingBoxes);
+        }
+
+        [TestMethod]
+        [TestCategory("ToGeoJSONGeography")]
+        public void TestSimplePointWithoutBoundingBox()
+        {
+            Point geoJSONobj = this.simplePoint.ToGeoJSONObject<Point>(false);
+
+            Assert.IsNotNull(geoJSONobj);
+            Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.Point);
+            Assert.IsNull(geoJSONobj.BoundingBoxes);
+        }
+
+        [TestMethod]
+        [TestCategory("ToGeoJSONGeography")]
+        public void TestMultiPointWithoutBoundingBox()
+        {
+            MultiPoint geoJSONobj = this.multiPoint.ToGeoJSONObject<MultiPoint>(false);
+
+            Assert.IsNotNull(geoJSONobj);
+            Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.MultiPoint);
+            Assert.IsNull(geoJSONobj.BoundingBoxes);
+        }
+
+        [TestMethod]
+        [TestCategory("ToGeoJSONGeography")]
+        public void TestSimplePolygonWithoutBoundingBox()
+        {
+            var geoJSONobj = this.simplePoly.ToGeoJSONObject<Polygon>(false);
+
+            Assert.IsNotNull(geoJSONobj);
+            Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.Polygon);
+            Assert.IsNull(geoJSONobj.BoundingBoxes);
+            Assert.AreEqual(geoJSONobj.Coordinates.Count, 1);
+        }
+
+        [TestMethod]
+        [TestCategory("ToGeoJSONGeography")]
+        public void TestPolygonWitHoleWithoutBoundingBox()
+        {
+            var geoJSONobj = this.polyWithHole.ToGeoJSONObject<Polygon>(false);
+
+            Assert.IsNotNull(geoJSONobj);
+            Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.Polygon);
+            Assert.IsNull(geoJSONobj.BoundingBoxes);
+            Assert.AreEqual(geoJSONobj.Coordinates.Count, 2);
+        }
+
+        [TestMethod]
+        [TestCategory("ToGeoJSONGeography")]
+        public void TestMultiPolygonWithoutBoundingBox()
+        {
+            var geoJSONobj = this.multiPolygon.ToGeoJSONObject<MultiPolygon>(false);
+
+            Assert.IsNotNull(geoJSONobj);
+            Assert.AreEqual(geoJSONobj.Type, GeoJSONObjectType.MultiPolygon);
+            Assert.IsNull(geoJSONobj.BoundingBoxes);
+            Assert.AreEqual(geoJSONobj.Coordinates.Count, 3);
+            Assert.AreEqual(geoJSONobj.Coordinates[1].Coordinates.Count, 2);
+            Assert.AreEqual(geoJSONobj.Coordinates[1].Coordinates[0].Coordinates.Count, 6);
+            Assert.AreEqual(geoJSONobj.Coordinates[1].Coordinates[1].Coordinates.Count, 4);
+            Assert.AreEqual(geoJSONobj.Coordinates[2].Coordinates[0].Coordinates.Count, 5);
+            Assert.AreEqual(geoJSONobj.Coordinates[2].Coordinates[1].Coordinates.Count, 5);
+        }
+
         #region Test geographies
 
         SqlGeography simplePoint = SqlGeography.Parse(new SqlString(WktSamples.POINT)).MakeValidIfInvalid();
