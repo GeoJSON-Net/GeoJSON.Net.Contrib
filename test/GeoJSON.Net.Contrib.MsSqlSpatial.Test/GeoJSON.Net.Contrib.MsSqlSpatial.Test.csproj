@@ -79,6 +79,7 @@
     <Compile Include="ToSqlGeographyTests.cs" />
     <Compile Include="ToSqlGeometryTests.cs" />
     <Compile Include="ToGeoJSONGeometryTests.cs" />
+    <Compile Include="MiscTests.cs" />
     <Compile Include="WktSamples.cs" />
     <Compile Include="WktTests.cs" />
   </ItemGroup>
