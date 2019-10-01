@@ -38,9 +38,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GeoJSON.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\GeoJSON.Net.1.1.64\lib\net45\GeoJSON.Net.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="GeoJSON.Net, Version=1.1.73.0, Culture=neutral, PublicKeyToken=42c00ea87f5f14d4, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\GeoJSON.Net.1.1.73\lib\net45\GeoJSON.Net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\src\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
