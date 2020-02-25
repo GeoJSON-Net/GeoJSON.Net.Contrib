@@ -7,17 +7,17 @@
     <Company>GeoJSON.Net</Company>
     <Copyright>Copyright © Alvaro Montero Gonzalez, Joerg Battermann, Matt Hunt, Xavier Fischer and Contributors, 2014 - 2019</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.5</Version>
+    <Version>0.1.6</Version>
     <PackageProjectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>geojson;geo;json;geolocation;spatial;gis;wkb</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Updated to GeoJson 1.2.14</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated to GeoJson 1.2.15</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GeoJSON.Net" version="1.2.14" />
+    <PackageReference Include="GeoJSON.Net" version="1.2.15" />
     <PackageReference Include="Newtonsoft.Json" version="10.0.2" />
   </ItemGroup>
 
