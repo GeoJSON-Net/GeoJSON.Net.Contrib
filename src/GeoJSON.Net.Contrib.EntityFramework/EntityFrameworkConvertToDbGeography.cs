@@ -6,10 +6,9 @@ namespace GeoJSON.Net.Contrib.EntityFramework
 {
     public static partial class EntityFrameworkConvert
     {
-        public static DbGeography ToDbGeography(this IGeometryObject geometryObject)
+        public static DbGeography ToDbGeography(this IGeometryObject geometryObject, int coordinateSystemId = 4326)
         {
-            DbGeography value = DbGeography.FromBinary(WkbEncode.Encode(geometryObject));
-            return value;
+            return DbGeography.FromBinary(WkbEncode.Encode(geometryObject), coordinateSystemId);
         }
     }
 }
