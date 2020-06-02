@@ -67,7 +67,7 @@ DbGeography dbGeographyPoint = point.ToDbGeography();
 
 
 ## GeoJSON.Net.Contrib.Wkb
-Allows conversion from / to Wkb binary types.
+Allows conversion from / to Wkb binary types. Only 2D geometries are supported, attempting to convert a 3D geometry will throw an `Exception`.
 
 [NuGet package](https://www.nuget.org/packages/GeoJSON.Net.Contrib.Wkb):
 `Install-Package GeoJSON.Net.Contrib.Wkb`
