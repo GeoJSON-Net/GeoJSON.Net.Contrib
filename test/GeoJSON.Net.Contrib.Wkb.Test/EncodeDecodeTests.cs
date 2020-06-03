@@ -45,20 +45,20 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
             Assert.Equal(polygon, processedPolygon);
         }
 
-        [Fact(Skip = "Equal method does not seem to be working right")]
+        [Fact]
         public void EncodeDecodePolygonWithHoleTest()
         {
             var processedPolygon = polygonWithHole.ToWkb().ToGeoJSONObject<Polygon>();
 
-            Assert.Equal(polygon, processedPolygon);
+            Assert.Equal(polygonWithHole, processedPolygon);
         }
 
-        [Fact(Skip = "Equal method does not seem to be working right")]
+        [Fact]
         public void EncodeDecodePolygonWithHoleReverseWindingTest()
         {
             var processedPolygon = polygonWithHoleReverseWinding.ToWkb().ToGeoJSONObject<Polygon>();
 
-            Assert.Equal(polygon, processedPolygon);
+            Assert.Equal(polygonWithHoleReverseWinding, processedPolygon);
         }
 
         [Fact]
