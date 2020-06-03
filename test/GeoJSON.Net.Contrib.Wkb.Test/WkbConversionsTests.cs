@@ -27,13 +27,13 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
                 {
                     new Point(new Position(52.379790828551016, 5.3173828125)),
                     new Point(new Position(52.36721467920585, 5.456085205078125)),
-                    new Point(new Position(52.303440474272755, 5.386047363281249, 4.23))
+                    new Point(new Position(52.303440474272755, 5.386047363281249))
                 });
             lineString = new LineString(new List<IPosition>
                 {
                     new Position(52.379790828551016, 5.3173828125),
                     new Position(52.36721467920585, 5.456085205078125),
-                    new Position(52.303440474272755, 5.386047363281249, 4.23)
+                    new Position(52.303440474272755, 5.386047363281249)
                 });
             multiLineString = new MultiLineString(new List<LineString>
                 {
@@ -41,15 +41,16 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
                     {
                         new Position(52.379790828551016, 5.3173828125),
                         new Position(52.36721467920585, 5.456085205078125),
-                        new Position(52.303440474272755, 5.386047363281249, 4.23)
+                        new Position(52.303440474272755, 5.386047363281249)
                     }),
                     new LineString(new List<IPosition>
                     {
                         new Position(52.379790828551016, 5.3273828125),
                         new Position(52.36721467920585, 5.486085205078125),
-                        new Position(52.303440474272755, 5.426047363281249, 4.23)
+                        new Position(52.303440474272755, 5.426047363281249)
                     })
                 });
+
             /*
 			 * POLYGON (
 			 *	new Position(5.6718750056992775 43.179268827576763), 
@@ -125,7 +126,7 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
                     new LineString(new List<Position>
                     {
                         new Position(52.379790828551016, 5.3173828125),
-                        new Position(52.303440474272755, 5.386047363281249, 4.23),
+                        new Position(52.303440474272755, 5.386047363281249),
                         new Position(52.36721467920585, 5.456085205078125),
                         new Position(52.379790828551016, 5.3173828125)
                     })
