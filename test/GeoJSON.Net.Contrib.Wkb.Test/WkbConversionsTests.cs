@@ -8,14 +8,21 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
     public partial class WkbConversionsTests
     {
         Point point;
+        Point pointZ;
         MultiPoint multiPoint;
+        MultiPoint multiPointZ;
         LineString lineString;
+        LineString lineStringZ;
         MultiLineString multiLineString;
+        MultiLineString multiLineStringZ;
         Polygon polygon;
+        Polygon polygonZ;
         Polygon polygonWithHole;
         Polygon polygonWithHoleReverseWinding;
         MultiPolygon multiPolygon;
+        MultiPolygon multiPolygonZ;
         GeometryCollection geomCollection;
+        GeometryCollection geomCollectionZ;
         Feature.Feature feature;
         FeatureCollection featureCollection;
 
@@ -23,18 +30,34 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
         {
             point = new Point(new Position(53.2455662, 90.65464646));
 
+            pointZ = new Point(new Position(1, 2, 3));
+
             multiPoint = new MultiPoint(new List<Point>
                 {
                     new Point(new Position(52.379790828551016, 5.3173828125)),
                     new Point(new Position(52.36721467920585, 5.456085205078125)),
                     new Point(new Position(52.303440474272755, 5.386047363281249))
                 });
+
+            multiPointZ = new MultiPoint(new List<Point>
+                {
+                    new Point(new Position(1, 2, 3)),
+                    new Point(new Position(4, 5, 6)),
+                });
+
             lineString = new LineString(new List<IPosition>
                 {
                     new Position(52.379790828551016, 5.3173828125),
                     new Position(52.36721467920585, 5.456085205078125),
                     new Position(52.303440474272755, 5.386047363281249)
                 });
+
+            lineStringZ = new LineString(new List<IPosition>
+                {
+                    new Position(1, 2, 3),
+                    new Position(4, 5, 6)
+                });
+
             multiLineString = new MultiLineString(new List<LineString>
                 {
                     new LineString(new List<IPosition>
@@ -48,6 +71,20 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
                         new Position(52.379790828551016, 5.3273828125),
                         new Position(52.36721467920585, 5.486085205078125),
                         new Position(52.303440474272755, 5.426047363281249)
+                    })
+                });
+
+            multiLineStringZ = new MultiLineString(new List<LineString>
+                {
+                    new LineString(new List<IPosition>
+                    {
+                        new Position(1, 2, 3),
+                        new Position(4, 5, 6)
+                    }),
+                    new LineString(new List<IPosition>
+                    {
+                        new Position(7, 8, 9),
+                        new Position(10, 11, 12)
                     })
                 });
 
@@ -132,6 +169,17 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
                     })
                 });
 
+            polygonZ = new Polygon(new List<LineString>
+                {
+                    new LineString(new List<IPosition>
+                        {
+                            new Position(1, 2, 3),
+                            new Position(4, 5, 3),
+                            new Position(4, 5, 6),
+                            new Position(1, 2, 3),
+                        })
+                });
+
             multiPolygon = new MultiPolygon(new List<Polygon>
                 {
                     new Polygon(new List<LineString>
@@ -169,6 +217,30 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
                     })
                 });
 
+            multiPolygonZ = new MultiPolygon(new List<Polygon>
+                {
+                    new Polygon(new List<LineString>
+                    {
+                        new LineString(new List<IPosition>
+                            {
+                                new Position(1, 2, 3),
+                                new Position(4, 5, 3),
+                                new Position(4, 5, 6),
+                                new Position(1, 2, 3),
+                            })
+                    }),
+                    new Polygon(new List<LineString>
+                    {
+                        new LineString(new List<IPosition>
+                            {
+                                new Position(10, 20, 30),
+                                new Position(40, 50, 30),
+                                new Position(40, 50, 60),
+                                new Position(10, 20, 30),
+                            })
+                    })
+                });
+
             geomCollection = new GeometryCollection(new List<IGeometryObject>
                 {
                     point,
@@ -177,6 +249,16 @@ namespace GeoJSON.Net.Contrib.Wkb.Test
                     multiLineString,
                     polygon,
                     multiPolygon
+                });
+
+            geomCollectionZ = new GeometryCollection(new List<IGeometryObject>
+                {
+                    pointZ,
+                    multiPointZ,
+                    lineStringZ,
+                    multiLineStringZ,
+                    polygonZ,
+                    multiPolygonZ
                 });
 
             feature = new Feature.Feature(polygon, new Dictionary<string, object>() { { "Key", "Value" } }, "Id");

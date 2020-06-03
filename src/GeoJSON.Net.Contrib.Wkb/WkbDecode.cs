@@ -19,40 +19,40 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
             return ParseShape(wkb, ref v_pos);
         }        
 
-        private static Point ParsePoint(byte[] wkb, ref int wkbPosition)
+        private static Point ParsePoint(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.Point, wkbGeometryType);
+            CheckBaseType(WkbGeometryType.Point, wkbGeometryType);
 
-            Position geographicalPosition = GetGeographicPosition(wkb, ref wkbPosition);
+            Position geographicalPosition = GetGeographicPosition(wkb, ref wkbPosition, hasAltitude);
 
             return new Point(geographicalPosition);
         }
 
-        private static LineString ParseLineString(byte[] wkb, ref int wkbPosition)
+        private static LineString ParseLineString(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.LineString, wkbGeometryType);
+            CheckBaseType(WkbGeometryType.LineString, wkbGeometryType);
 
-            Position[] positions = ParsePositions(wkb, ref wkbPosition);
+            Position[] positions = ParsePositions(wkb, ref wkbPosition, hasAltitude);
 
             return new LineString(positions);
         }        
 
-        private static Polygon ParsePolygon(byte[] wkb, ref int wkbPosition)
+        private static Polygon ParsePolygon(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.Polygon, wkbGeometryType);
+            CheckBaseType(WkbGeometryType.Polygon, wkbGeometryType);
 
             var numberOfLines = GetUInt32(wkb, ref wkbPosition);
             var lines = new List<LineString>();
 
             for (var v_ls = 0; v_ls < numberOfLines; ++v_ls)
             {
-                Position[] positions = ParsePositions(wkb, ref wkbPosition);
+                Position[] positions = ParsePositions(wkb, ref wkbPosition, hasAltitude);
 
                 lines.Add(new LineString(positions));
             }
@@ -60,52 +60,52 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
             return new Polygon(lines);
         }
 
-        private static MultiPoint ParseMultiPoint(byte[] wkb, ref int wkbPosition)
+        private static MultiPoint ParseMultiPoint(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.MultiPoint, wkbGeometryType);
+            CheckBaseType(WkbGeometryType.MultiPoint, wkbGeometryType);
 
             var numberOfPoints = GetUInt32(wkb, ref wkbPosition);
             var points = new List<Point>();
 
             for (var i = 0; i < numberOfPoints; ++i)
             {
-                points.Add(ParsePoint(wkb, ref wkbPosition));
+                points.Add(ParsePoint(wkb, ref wkbPosition, hasAltitude));
             }
 
             return new MultiPoint(points);
         }
 
-        private static MultiLineString ParseMultiLineString(byte[] wkb, ref int wkbPosition)
+        private static MultiLineString ParseMultiLineString(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.MultiLineString, wkbGeometryType);
+            CheckBaseType(WkbGeometryType.MultiLineString, wkbGeometryType);
 
             var numberOfLines = GetUInt32(wkb, ref wkbPosition);
             var lines = new List<LineString>();
 
             for (var i = 0; i < numberOfLines; ++i)
             {
-                lines.Add(ParseLineString(wkb, ref wkbPosition));
+                lines.Add(ParseLineString(wkb, ref wkbPosition, hasAltitude));
             }
 
             return new MultiLineString(lines);
         }
 
-        private static MultiPolygon ParseMultiPolygon(byte[] wkb, ref int wkbPosition)
+        private static MultiPolygon ParseMultiPolygon(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.MultiPolygon, wkbGeometryType);
+            CheckBaseType(WkbGeometryType.MultiPolygon, wkbGeometryType);
 
             var numberOfPolygons = GetUInt32(wkb, ref wkbPosition);
             var polygons = new List<Polygon>();
 
             for (var i = 0; i < numberOfPolygons; ++i)
             {
-                polygons.Add(ParsePolygon(wkb, ref wkbPosition));
+                polygons.Add(ParsePolygon(wkb, ref wkbPosition, hasAltitude));
             }
 
             return new MultiPolygon(polygons);
@@ -115,7 +115,7 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
         {
             var wkbGeometryType = GetType(wkb, ref wkbPosition);
 
-            CheckType(WkbGeometryType.GeometryCollection, wkbGeometryType);
+            CheckBaseType(WkbGeometryType.GeometryCollection, wkbGeometryType);
 
             var numberOfShapes = GetUInt32(wkb, ref wkbPosition);
             var geometries = new List<IGeometryObject>();
@@ -131,26 +131,34 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
         private static IGeometryObject ParseShape(byte[] wkb, ref int wkbPosition)
         {
             var v_type = BitConverter.ToUInt32(wkb, wkbPosition + 1);
+            var baseType = v_type % 1000;
+            bool hasAltitude = v_type / 1000 == 1 || v_type / 1000 == 3;
+            bool hasMeasure = v_type / 1000 == 2 || v_type / 1000 == 3;
 
-            switch (v_type)
+            if (hasMeasure)
+            {
+                throw new ArgumentOutOfRangeException("WKB data with an M value is currently not supported.");
+            }
+
+            switch (baseType)
             {
                 case (uint)WkbGeometryType.Point:
-                    return ParsePoint(wkb, ref wkbPosition);
+                    return ParsePoint(wkb, ref wkbPosition, hasAltitude);
 
                 case (uint)WkbGeometryType.LineString:
-                    return ParseLineString(wkb, ref wkbPosition);
+                    return ParseLineString(wkb, ref wkbPosition, hasAltitude);
 
                 case (uint)WkbGeometryType.Polygon:
-                    return ParsePolygon(wkb, ref wkbPosition);
+                    return ParsePolygon(wkb, ref wkbPosition, hasAltitude);
 
                 case (uint)WkbGeometryType.MultiPoint:
-                    return ParseMultiPoint(wkb, ref wkbPosition);
+                    return ParseMultiPoint(wkb, ref wkbPosition, hasAltitude);
 
                 case (uint)WkbGeometryType.MultiLineString:
-                    return ParseMultiLineString(wkb, ref wkbPosition);
+                    return ParseMultiLineString(wkb, ref wkbPosition, hasAltitude);
 
                 case (uint)WkbGeometryType.MultiPolygon:
-                    return ParseMultiPolygon(wkb, ref wkbPosition);
+                    return ParseMultiPolygon(wkb, ref wkbPosition, hasAltitude);
 
                 case (uint)WkbGeometryType.GeometryCollection:
                     return ParseGeometryCollection(wkb, ref wkbPosition);
@@ -174,24 +182,25 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
             return doubleConversion;
         }
 
-        private static Position[] ParsePositions(byte[] wkb, ref int wkbPosition)
+        private static Position[] ParsePositions(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
             var numberOfPoints = GetUInt32(wkb, ref wkbPosition);
             Position[] positions = new Position[numberOfPoints];
 
             for (var i = 0; i < numberOfPoints; ++i)
             {
-                positions[i] = GetGeographicPosition(wkb, ref wkbPosition);
+                positions[i] = GetGeographicPosition(wkb, ref wkbPosition, hasAltitude);
             }
 
             return positions;
         }
 
-        private static Position GetGeographicPosition(byte[] wkb, ref int wkbPosition)
+        private static Position GetGeographicPosition(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
-            var longitud = GetDouble(wkb, ref wkbPosition);
-            var latitud = GetDouble(wkb, ref wkbPosition);
-            return new Position(latitud, longitud);
+            var longitude = GetDouble(wkb, ref wkbPosition);
+            var latitude = GetDouble(wkb, ref wkbPosition);
+            var altitude = hasAltitude ? GetDouble(wkb, ref wkbPosition) : (double?)null;
+            return new Position(latitude, longitude, altitude);
         }
 
         private static uint GetType(byte[] wkb, ref int wkbPosition)
@@ -206,9 +215,9 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
             return GetUInt32(wkb, ref wkbPosition);
         }
 
-        private static void CheckType(WkbGeometryType expected, uint actual)
+        private static void CheckBaseType(WkbGeometryType expected, uint actual)
         {
-            if (actual != (uint)expected)
+            if (actual % 1000 != (uint)expected)
             {
                 throw new ArgumentException($"Invalid wkb geometry type, expected {expected}, actual {actual}");
             }
