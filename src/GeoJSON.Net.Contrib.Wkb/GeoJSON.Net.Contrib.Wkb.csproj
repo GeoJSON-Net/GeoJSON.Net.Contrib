@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net45</TargetFrameworks>
     <Description>Provides GeoJSON.Net Converters from / to Wkb binary format.</Description>
     <Authors>Alvaro Montero Gonzalez</Authors>
     <Company>GeoJSON.Net</Company>
     <Copyright>Copyright © Alvaro Montero Gonzalez, Joerg Battermann, Matt Hunt, Xavier Fischer and Contributors, 2014 - 2019</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.6</Version>
+    <Version>0.1.7</Version>
     <PackageProjectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
