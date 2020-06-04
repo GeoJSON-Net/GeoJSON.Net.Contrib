@@ -41,20 +41,37 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
         private static void Point(BinaryWriter binaryWriter, IGeometryObject geometryObject)
         {
             var v_Point = geometryObject as Point;
+            var type = (int)WkbGeometryType.Point;
+            var hasAltitude = HasAltitude(v_Point);
+            if (hasAltitude)
+            {
+                type += 1000;
+            }
+
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.Point);
+            binaryWriter.Write(type);
             var position = v_Point.Coordinates as Position;
             binaryWriter.Write(position.Longitude);
             binaryWriter.Write(position.Latitude);
+            if (hasAltitude)
+            {
+                binaryWriter.Write((double)position.Altitude);
+            }
         }
 
         private static void MultiPoint(BinaryWriter binaryWriter, IGeometryObject geometryObject)
         {
             var multiPoint = geometryObject as MultiPoint;
+            var type = (int)WkbGeometryType.MultiPoint;
+            var hasAltitude = HasAltitude(multiPoint);
+            if (hasAltitude)
+            {
+                type += 1000;
+            }
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.MultiPoint);
+            binaryWriter.Write(type);
             binaryWriter.Write((int)multiPoint.Coordinates.Count);
 
             foreach(Point point in multiPoint.Coordinates)
@@ -71,33 +88,49 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
             binaryWriter.Write(position.Latitude);
         }
 
-        private static void Points(BinaryWriter binaryWriter, List<IPosition> positions)
+        private static void Points(BinaryWriter binaryWriter, List<IPosition> positions, bool hasAltitude)
         {
             foreach (IPosition v_Point in positions)
             {
                 var position = v_Point as Position;
                 binaryWriter.Write(position.Longitude);
                 binaryWriter.Write(position.Latitude);
+                if (hasAltitude)
+                {
+                    binaryWriter.Write((double)position.Altitude);
+                }
             }
         }
 
         private static void Polyline(BinaryWriter binaryWriter, IGeometryObject geometryObject)
         {
             var v_Polyline = geometryObject as LineString;
+            var type = (int)WkbGeometryType.LineString;
+            var hasAltitude = HasAltitude(v_Polyline);
+            if (hasAltitude)
+            {
+                type += 1000;
+            }
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.LineString);
+            binaryWriter.Write(type);
             binaryWriter.Write((int)v_Polyline.Coordinates.Count);
 
-            Points(binaryWriter, v_Polyline.Coordinates.ToList());
+            Points(binaryWriter, v_Polyline.Coordinates.ToList(), hasAltitude);
         }
 
         private static void MultiPolyline(BinaryWriter binaryWriter, IGeometryObject GeometryObject)
         {
             var multiLineString = GeometryObject as MultiLineString;
+            var type = (int)WkbGeometryType.MultiLineString;
+            var hasAltitude = HasAltitude(multiLineString);
+            if (hasAltitude)
+            {
+                type += 1000;
+            }
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.MultiLineString);
+            binaryWriter.Write(type);
             binaryWriter.Write((int)multiLineString.Coordinates.Count);
 
             foreach (LineString lineString in multiLineString.Coordinates)
@@ -109,9 +142,15 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
         private static void Polygon(BinaryWriter binaryWriter, IGeometryObject geometryObject)
         {
             var polygon = geometryObject as Polygon;
+            var type = (int)WkbGeometryType.Polygon;
+            var hasAltitude = HasAltitude(polygon);
+            if (hasAltitude)
+            {
+                type += 1000;
+            }
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.Polygon);
+            binaryWriter.Write(type);
 
             var numberOfRings = polygon.Coordinates.Count;
             binaryWriter.Write(numberOfRings);
@@ -119,16 +158,22 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
             foreach (LineString ring in polygon.Coordinates)
             {
                 binaryWriter.Write((int)ring.Coordinates.Count);
-                Points(binaryWriter, ring.Coordinates.ToList());
+                Points(binaryWriter, ring.Coordinates.ToList(), hasAltitude);
             }
         }
 
         private static void MultiPolygon(BinaryWriter binaryWriter, IGeometryObject geometryObject)
         {
             var multiPolygon = geometryObject as MultiPolygon;
+            var type = (int)WkbGeometryType.MultiPolygon;
+            var hasAltitude = HasAltitude(multiPolygon);
+            if (hasAltitude)
+            {
+                type += 1000;
+            }
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((int)WkbGeometryType.MultiPolygon);
+            binaryWriter.Write(type);
             binaryWriter.Write((int)multiPolygon.Coordinates.Count);
 
             foreach(Polygon polygon in multiPolygon.Coordinates)
@@ -140,9 +185,15 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
         private static void GeometryCollection(BinaryWriter binaryWriter, IGeometryObject geometryObject)
         {
             var geometryCollection = geometryObject as GeometryCollection;
+            var type = (int)WkbGeometryType.GeometryCollection;
+            var hasAltitude = HasAltitude(geometryCollection);
+            if (hasAltitude)
+            {
+                type += 1000;
+            }
 
             binaryWriter.Write(_wKBNDR);
-            binaryWriter.Write((Int32)WkbGeometryType.GeometryCollection);
+            binaryWriter.Write(type);
             binaryWriter.Write((Int32)geometryCollection.Geometries.Count);
 
             foreach(IGeometryObject geometry in geometryCollection.Geometries)
@@ -183,6 +234,69 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
                     GeometryCollection(binaryWriter, geometryObject);
                     break;
             }
-        }        
+        }
+
+        private static bool HasAltitude(Point point)
+        {
+            return point.Coordinates.Altitude != null;
+        }
+
+        private static bool HasAltitude(MultiPoint multiPoint)
+        {
+            return multiPoint.Coordinates.FirstOrDefault()?.Coordinates.Altitude != null;
+        }
+
+        private static bool HasAltitude(Polygon polygon)
+        {
+            return polygon.Coordinates.FirstOrDefault()?.Coordinates.FirstOrDefault()?.Altitude != null;
+        }
+
+        private static bool HasAltitude(MultiPolygon multiPolygon)
+        {
+            return multiPolygon.Coordinates.FirstOrDefault()?.Coordinates.FirstOrDefault()?.Coordinates.FirstOrDefault()?.Altitude != null;
+        }
+
+        private static bool HasAltitude(LineString lineString)
+        {
+            return lineString.Coordinates.FirstOrDefault()?.Altitude != null;
+        }
+
+        private static bool HasAltitude(MultiLineString multiLineString)
+        {
+            return multiLineString.Coordinates.FirstOrDefault()?.Coordinates.FirstOrDefault()?.Altitude != null;
+        }
+
+        private static bool HasAltitude(GeometryCollection geometryCollection)
+        {
+            if (geometryCollection.Geometries.Count == 0)
+            {
+                return false;
+            }
+
+            var firstGeometry = geometryCollection.Geometries.First();
+            switch (firstGeometry.Type)
+            {
+                case GeoJSONObjectType.Point:
+                    return HasAltitude(firstGeometry as Point);
+
+                case GeoJSONObjectType.MultiPoint:
+                    return HasAltitude(firstGeometry as MultiPoint);
+
+                case GeoJSONObjectType.Polygon:
+                    return HasAltitude(firstGeometry as Polygon);
+
+                case GeoJSONObjectType.MultiPolygon:
+                    return HasAltitude(firstGeometry as MultiPolygon);
+
+                case GeoJSONObjectType.LineString:
+                    return HasAltitude(firstGeometry as LineString);
+
+                case GeoJSONObjectType.MultiLineString:
+                    return HasAltitude(firstGeometry as MultiLineString);
+
+                default:
+                    throw new Exception("Unsupported type");
+            }
+        }
     }
 }
