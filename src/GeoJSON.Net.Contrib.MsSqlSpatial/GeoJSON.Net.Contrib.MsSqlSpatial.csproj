@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="GeoJSON.Net" version="1.2.15" />
-    <PackageReference Include="Microsoft.SqlServer.Types" version="14.0.314.7" />
+    <PackageReference Include="Microsoft.SqlServer.Types" version="14.0.314.76" />
   </ItemGroup>
 
   <ItemGroup>

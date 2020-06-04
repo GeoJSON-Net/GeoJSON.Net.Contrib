@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net45</TargetFrameworks>
     <Description>Provides GeoJSON.Net Converters from / to Wkb binary format.</Description>
-    <Authors>Alvaro Montero Gonzalez</Authors>
+    <Authors>Alvaro Montero Gonzalez, Stijn Herreman, Trevor Thoele</Authors>
     <Company>GeoJSON.Net</Company>
-    <Copyright>Copyright © Alvaro Montero Gonzalez, Joerg Battermann, Matt Hunt, Xavier Fischer and Contributors, 2014 - 2019</Copyright>
+    <Copyright>Copyright © Alvaro Montero Gonzalez, Joerg Battermann, Matt Hunt, Xavier Fischer and Contributors, 2014 - 2020</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.7</Version>
     <PackageProjectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib</PackageProjectUrl>
@@ -13,7 +13,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>geojson;geo;json;geolocation;spatial;gis;wkb</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Updated to GeoJson 1.2.15</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for Z coordinates (Thanks to Stijn Herreman and Trevor Thoele)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
