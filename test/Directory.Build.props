@@ -1,0 +1,4 @@
+<!-- This file is automatically included in all projects under "test" directory. -->
+<Project>
+  <Import Project="../src/Directory.Build.props" />
+</Project>
