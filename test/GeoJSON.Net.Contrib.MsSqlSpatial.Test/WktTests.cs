@@ -1,18 +1,11 @@
-﻿using GeoJSON.Net.Contrib.MsSqlSpatial;
-using GeoJSON.Net.Geometry;
-using Microsoft.SqlServer.Types;
+﻿using GeoJSON.Net.Geometry;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GeoJSON.Net.MsSqlSpatial.Tests
+namespace GeoJSON.Net.Contrib.MsSqlSpatial.Test
 {
-	/// <summary>
-	/// WktConvert tests
-	/// </summary>
+    /// <summary>
+    /// WktConvert tests
+    /// </summary>
     [TestClass]
     public class WktTests
     {

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Data.SqlTypes;
+using GeoJSON.Net.Geometry;
 using Microsoft.SqlServer.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GeoJSON.Net.Geometry;
-using GeoJSON.Net.Contrib.MsSqlSpatial;
-using System.Data.SqlTypes;
 
-namespace GeoJSON.Net.MsSqlSpatial.Tests
+namespace GeoJSON.Net.Contrib.MsSqlSpatial.Test
 {
     [TestClass]
     public class ToGeoJSONGeographyTests

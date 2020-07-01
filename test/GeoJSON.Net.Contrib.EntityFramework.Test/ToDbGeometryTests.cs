@@ -2,6 +2,8 @@
 using System.Linq;
 using Xunit;
 
+#pragma warning disable 618
+
 namespace GeoJSON.Net.Contrib.EntityFramework.Test
 {
     public partial class EntityFrameworkConvertTests
