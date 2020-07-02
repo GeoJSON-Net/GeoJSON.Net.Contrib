@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Microsoft.SqlServer.Types;
+﻿using Microsoft.SqlServer.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 
@@ -29,9 +26,6 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Test
             bool intersects = sqlGeographyPoint.STIntersects(geo).IsTrue;
 
             Assert.IsTrue(within && intersects);
-
-
-
         }
 
         /// <summary>
@@ -63,9 +57,6 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Test
 
             Assert.IsFalse(within);
             Assert.IsFalse(intersects);
-
         }
     }
-
-
 }

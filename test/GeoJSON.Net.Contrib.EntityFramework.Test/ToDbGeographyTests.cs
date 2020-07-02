@@ -1,7 +1,9 @@
-﻿using GeoJSON.Net.Contrib.Wkb.Conversions;
-using System;
+﻿using System;
 using System.Linq;
+using GeoJSON.Net.Contrib.Wkb.Conversions;
 using Xunit;
+
+#pragma warning disable 618
 
 namespace GeoJSON.Net.Contrib.EntityFramework.Test
 {

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45</TargetFrameworks>
+    <TargetFrameworks>$(DefaultTargetFramework)</TargetFrameworks>
     <Description>Provides GeoJSON.Net Converters from / to the MS SQL Spatial types.</Description>
     <Authors>Xavier Fischer</Authors>
     <Company>GeoJSON.Net</Company>
@@ -22,10 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <!-- inspired by https://github.com/dotnet/SqlClient/issues/30#issuecomment-460504614 -->
+    <None Include="$(USERPROFILE)/.nuget/packages/microsoft.sqlserver.types/14.0.314.76/nativeBinaries/**" CopyToOutputDirectory="PreserveNewest" Link="SqlServerTypes/%(RecursiveDir)%(Filename)%(Extension)" Visible="false" />
   </ItemGroup>
-  
-  <PropertyGroup>
-    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
-  </PropertyGroup>
+
 </Project>

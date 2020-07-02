@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GeoJSON.Net.Contrib.MsSqlSpatial.Test;
 using GeoJSON.Net.Feature;
 using GeoJSON.Net.Geometry;
 
@@ -7,6 +8,11 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
 {
     public partial class EntityFrameworkConvertTests
     {
+        static EntityFrameworkConvertTests()
+        {
+            AssemblyInitializer.AssemblyInit();
+        }
+
         Point point;
         MultiPoint multiPoint;
         LineString lineString;

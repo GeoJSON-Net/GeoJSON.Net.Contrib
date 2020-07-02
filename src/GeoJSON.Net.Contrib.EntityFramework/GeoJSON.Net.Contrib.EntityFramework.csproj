@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45</TargetFrameworks>
+    <TargetFrameworks>$(DefaultTargetFramework)</TargetFrameworks>
     <Description>Provides GeoJSON.Net Converters from / to the EntityFramework Spatial types.</Description>
     <Authors>Alvaro Montero Gonzalez</Authors>
     <Company>GeoJSON.Net</Company>
@@ -21,11 +21,4 @@
     <ProjectReference Include="../GeoJSON.Net.Contrib.Wkb/GeoJSON.Net.Contrib.Wkb.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <PropertyGroup>
-    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
-  </PropertyGroup>
 </Project>

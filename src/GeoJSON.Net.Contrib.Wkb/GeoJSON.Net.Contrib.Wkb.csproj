@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;$(DefaultTargetFramework)</TargetFrameworks>
     <Description>Provides GeoJSON.Net Converters from / to Wkb binary format.</Description>
     <Authors>Alvaro Montero Gonzalez, Stijn Herreman, Trevor Thoele</Authors>
     <Company>GeoJSON.Net</Company>
@@ -20,7 +20,4 @@
     <PackageReference Include="GeoJSON.Net" version="1.2.19" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
-  </PropertyGroup>
 </Project>

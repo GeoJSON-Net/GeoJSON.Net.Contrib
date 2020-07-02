@@ -16,5 +16,8 @@ https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#assemblyinfo-propertie
     Shared build properties -->
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>../../src/key.snk</AssemblyOriginatorKeyFile>
+    <IsTestProject>False</IsTestProject>
+    <IsTestProject Condition=" $(MSBuildProjectName.EndsWith('.Test')) ">True</IsTestProject>
+    <DefaultTargetFramework>net45</DefaultTargetFramework>
   </PropertyGroup>
 </Project>
