@@ -100,7 +100,7 @@ Point pointFromWkb = wkbPoint.ToGeoJSONObject<Point>();
     - [Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
     - [JetBrains Rider](https://www.jetbrains.com/rider/)
 
-## Build and test the solution
+## Build, test and package the solution
 
 Use shell of your choice (`cmd.exe`, `powershell.exe`, `pwsh`, `bash`, etc) to run the following commands:
 
@@ -121,4 +121,15 @@ dotnet build src/GeoJSON.Net.Contrib.sln
 
 # test ("Debug" configuration)
 dotnet test src/GeoJSON.Net.Contrib.sln
+
+# package ("Release" configuration)
+git clean -dfx
+dotnet pack --configuration Release src/GeoJSON.Net.Contrib.sln
+
+# push all projects to NuGet server (requires "package" step above to be run first)
+# note: in addition to ".nupkg", the command below will automatically
+# detect ".snupkg" symbol package and push both ".nupkg" and ".snupkg"
+# to the specified NuGet server; for more information see
+# https://docs.microsoft.com/en-us/nuget/create-packages/symbol-packages-snupkg
+dotnet nuget push **/*.nupkg --api-key SECRET --source https://api.nuget.org/v3/index.json
 ```
