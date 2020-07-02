@@ -1,0 +1,20 @@
+<!--
+
+This file is automatically included in all projects under "src" directory.
+
+Reference for customizing build with "Directory.Build.props":
+https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build
+
+Reference for shared build properties:
+https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#assemblyinfo-properties
+
+-->
+<Project>
+  <PropertyGroup>
+    <!--
+
+    Shared build properties -->
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../src/key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+</Project>
