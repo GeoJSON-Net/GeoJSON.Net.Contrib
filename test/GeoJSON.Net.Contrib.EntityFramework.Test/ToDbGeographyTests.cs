@@ -80,9 +80,9 @@ namespace GeoJSON.Net.Contrib.EntityFramework.Test
         public void ToDbGeographyValidPolygonWithHoleReverseWindingTest()
         {
             // The reverse should not work due to geographycal restrictions:
-            // Message: Microsoft.SqlServer.Types.GLArgumentException : 24205: 
+            // Message: Microsoft.SqlServer.Types.GLArgumentException : 24205:
             // The specified input does not represent a valid geography instance because
-            // it exceeds a single hemisphere. Each geography instance must fit inside a single hemisphere. 
+            // it exceeds a single hemisphere. Each geography instance must fit inside a single hemisphere.
             // A common reason for this error is that a polygon has the wrong ring orientation.
             Assert.ThrowsAny<Exception>(() => polygonWithHoleReverseWinding.ToDbGeography());
         }

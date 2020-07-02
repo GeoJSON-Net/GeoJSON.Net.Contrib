@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.SqlServer.Types;
+﻿using System.Collections.Generic;
 
 namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 {
-	internal class SinkGeometry<T> : List<SinkLineRing>
-	{
-		public T GeometryType { get; set; }
+    internal class SinkGeometry<T> : List<SinkLineRing>
+    {
+        public T GeometryType { get; set; }
 
-		public SinkGeometry(T geomType)
-		{
-			GeometryType = geomType;
-		}
-	}
+        public SinkGeometry(T geomType)
+        {
+            GeometryType = geomType;
+        }
+    }
 }

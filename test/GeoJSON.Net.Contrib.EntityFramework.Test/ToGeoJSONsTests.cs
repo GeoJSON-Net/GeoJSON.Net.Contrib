@@ -6,7 +6,7 @@ using Xunit;
 namespace GeoJSON.Net.Contrib.EntityFramework.Test
 {
     public partial class EntityFrameworkConvertTests
-    {        
+    {
         [Theory]
         [InlineData(4326, "POINT(30 10)")]
         [InlineData(4326, "LINESTRING (30 10, 10 30, 40 40)")]

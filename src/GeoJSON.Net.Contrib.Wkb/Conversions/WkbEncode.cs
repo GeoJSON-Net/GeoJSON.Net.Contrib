@@ -149,7 +149,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
             {
                 Encode(binaryWriter, geometry);
             }
-        }        
+        }
 
         private static void Encode(BinaryWriter binaryWriter, IGeometryObject geometryObject)
         {
@@ -183,6 +183,6 @@ namespace GeoJSON.Net.Contrib.EntityFramework.WkbConversions
                     GeometryCollection(binaryWriter, geometryObject);
                     break;
             }
-        }        
+        }
     }
 }

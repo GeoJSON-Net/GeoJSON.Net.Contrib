@@ -200,7 +200,7 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
             {
                 Encode(binaryWriter, geometry);
             }
-        }        
+        }
 
         private static void Encode(BinaryWriter binaryWriter, IGeometryObject geometryObject)
         {
