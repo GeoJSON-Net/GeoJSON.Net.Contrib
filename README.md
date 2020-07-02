@@ -87,3 +87,38 @@ byte[] wkbPoint = point.ToWkb();
 // Wkb -> GeoJson example
 Point pointFromWkb = wkbPoint.ToGeoJSONObject<Point>();
 ```
+
+
+# Contribution Guide
+
+## Development Environment
+
+- [Git](https://git-scm.com/downloads) client 2.0+
+- [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core) 3.0+
+- (Optional) Development IDE, common choices are:
+    - [Visual Studio Code](https://code.visualstudio.com/) with [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+    - [Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
+    - [JetBrains Rider](https://www.jetbrains.com/rider/)
+
+## Build and test the solution
+
+Use shell of your choice (`cmd.exe`, `powershell.exe`, `pwsh`, `bash`, etc) to run the following commands:
+
+```sh
+# verify .NET SDK
+dotnet --info
+# => .NET Core SDK (reflecting any global.json):
+# => Version: 3.1.301
+# => ...
+
+# download repository
+cd <development-directory-root>
+git clone https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib.git
+cd GeoJSON.Net.Contrib
+
+# build ("Debug" configuration)
+dotnet build src/GeoJSON.Net.Contrib.sln
+
+# test ("Debug" configuration)
+dotnet test src/GeoJSON.Net.Contrib.sln
+```
