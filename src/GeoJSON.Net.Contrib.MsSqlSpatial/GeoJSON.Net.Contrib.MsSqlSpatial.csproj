@@ -7,17 +7,17 @@
     <Company>GeoJSON.Net</Company>
     <Copyright>Copyright © Xavier Fischer, Joerg Battermann, Matt Hunt, and Contributors, 2014 - 2019</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.3.5</Version>
+    <Version>0.3.6</Version>
     <PackageProjectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>geojson;geo;json;geolocation;spatial;gis;sql;sqltypes;sqlgeometry;sqlgeography</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Updated to GeoJson 1.2.15</PackageReleaseNotes>
+    <PackageReleaseNotes>Assembly signed. Updated to GeoJson 1.2.19</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GeoJSON.Net" version="1.2.15" />
+    <PackageReference Include="GeoJSON.Net" version="1.2.19" />
     <PackageReference Include="Microsoft.SqlServer.Types" version="14.0.314.76" />
   </ItemGroup>
 
