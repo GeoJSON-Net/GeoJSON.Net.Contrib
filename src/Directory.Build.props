@@ -18,7 +18,7 @@ https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#assemblyinfo-propertie
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../src/key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>../../src/GeoJSON.Net.Key.snk</AssemblyOriginatorKeyFile>
     <IsPackable>True</IsPackable>
     <IsPackable Condition=" $(MSBuildProjectName.EndsWith('.Test')) ">False</IsPackable>
     <IsTestProject>False</IsTestProject>
