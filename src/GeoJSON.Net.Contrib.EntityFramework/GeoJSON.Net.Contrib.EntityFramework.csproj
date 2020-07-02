@@ -4,20 +4,16 @@
     <TargetFrameworks>$(DefaultTargetFramework)</TargetFrameworks>
     <Description>Provides GeoJSON.Net Converters from / to the EntityFramework Spatial types.</Description>
     <Authors>Alvaro Montero Gonzalez</Authors>
-    <Company>GeoJSON.Net</Company>
     <Copyright>Copyright © Alvaro Montero Gonzalez, Joerg Battermann, Matt Hunt, Xavier Fischer and Contributors, 2014 - 2019</Copyright>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.7</Version>
-    <PackageProjectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <PackageTags>geojson;geo;json;geolocation;ef;entity;framework;entityframework</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>Assembly signed. Updated to GeoJson 1.2.19</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" version="6.1.3" />
+    <PackageReference Include="EntityFramework" version="6.4.4" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <ProjectReference Include="../GeoJSON.Net.Contrib.Wkb/GeoJSON.Net.Contrib.Wkb.csproj" />
   </ItemGroup>
 

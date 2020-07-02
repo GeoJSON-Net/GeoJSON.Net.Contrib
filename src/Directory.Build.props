@@ -14,10 +14,37 @@ https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#assemblyinfo-propertie
     <!--
 
     Shared build properties -->
+    <NoWarn>1591</NoWarn>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../src/key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>../../src/GeoJSON.Net.Key.snk</AssemblyOriginatorKeyFile>
+    <IsPackable>True</IsPackable>
+    <IsPackable Condition=" $(MSBuildProjectName.EndsWith('.Test')) ">False</IsPackable>
     <IsTestProject>False</IsTestProject>
     <IsTestProject Condition=" $(MSBuildProjectName.EndsWith('.Test')) ">True</IsTestProject>
     <DefaultTargetFramework>net45</DefaultTargetFramework>
+    <!--
+
+    NuGet package properties
+    (https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#nuget-metadata-properties)
+    (for package version see https://docs.microsoft.com/en-us/nuget/concepts/package-versioning#pre-release-versions -->
+    <Company>GeoJSON.Net</Company>
+    <PackageProjectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>GeoJSON.Net.Icon.png</PackageIcon>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSource>True</IncludeSource>
+    <EmbedUntrackedSources>True</EmbedUntrackedSources>
+    <ContinuousIntegrationBuild Condition=" '$(IsPackable)' == 'True' and '$(Configuration)' == 'Release' ">True</ContinuousIntegrationBuild>
   </PropertyGroup>
+  <ItemGroup>
+    <!--
+
+    Based on the following (official) NuGet example:
+    https://github.com/NuGet/Samples/blob/master/PackageIconExample/PackageIconExample.csproj
+    (note that image path is relative to .csproj file, not this .props file) -->
+    <None Include="../../src/GeoJSON.Net.Icon.png" Pack="True" Visible="False" PackagePath="" />
+  </ItemGroup>
 </Project>
