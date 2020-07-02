@@ -4,13 +4,8 @@
     <TargetFrameworks>$(DefaultTargetFramework)</TargetFrameworks>
     <Description>Provides GeoJSON.Net Converters from / to the MS SQL Spatial types.</Description>
     <Authors>Xavier Fischer</Authors>
-    <Company>GeoJSON.Net</Company>
     <Copyright>Copyright © Xavier Fischer, Joerg Battermann, Matt Hunt, and Contributors, 2014 - 2019</Copyright>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.3.6</Version>
-    <PackageProjectUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/GeoJSON-Net/GeoJSON.Net.Contrib.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <PackageTags>geojson;geo;json;geolocation;spatial;gis;sql;sqltypes;sqlgeometry;sqlgeography</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>Assembly signed. Updated to GeoJson 1.2.19</PackageReleaseNotes>
@@ -18,12 +13,13 @@
 
   <ItemGroup>
     <PackageReference Include="GeoJSON.Net" version="1.2.19" />
-    <PackageReference Include="Microsoft.SqlServer.Types" version="14.0.314.76" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SqlServer.Types" version="14.0.1016.290" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- inspired by https://github.com/dotnet/SqlClient/issues/30#issuecomment-460504614 -->
-    <None Include="$(USERPROFILE)/.nuget/packages/microsoft.sqlserver.types/14.0.314.76/nativeBinaries/**" CopyToOutputDirectory="PreserveNewest" Link="SqlServerTypes/%(RecursiveDir)%(Filename)%(Extension)" Visible="false" />
+    <None Include="$(USERPROFILE)/.nuget/packages/microsoft.sqlserver.types/14.0.1016.290/nativeBinaries/**" CopyToOutputDirectory="PreserveNewest" Link="SqlServerTypes/%(RecursiveDir)%(Filename)%(Extension)" Visible="false" />
   </ItemGroup>
 
 </Project>
