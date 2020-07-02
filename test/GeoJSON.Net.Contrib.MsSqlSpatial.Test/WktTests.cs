@@ -22,7 +22,6 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Test
             geom = WktConvert.GeoJSONGeometry(WktSamples.MULTILINESTRING_EMPY);
             Assert.IsNotNull(geom);
             Assert.AreEqual(geom.Type, GeoJSONObjectType.MultiLineString);
-
         }
 
         [TestMethod]
@@ -38,7 +37,6 @@ namespace GeoJSON.Net.Contrib.MsSqlSpatial.Test
 
             Assert.IsNotNull(multiLineString);
             Assert.AreEqual(multiLineString.Coordinates.Count, 0);
-
         }
     }
 }

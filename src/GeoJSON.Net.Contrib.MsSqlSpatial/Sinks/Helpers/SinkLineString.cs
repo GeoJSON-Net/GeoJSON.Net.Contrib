@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
 
 namespace GeoJSON.Net.Contrib.MsSqlSpatial.Sinks
 {
-	internal class SinkLineRing : List<IPosition>
-	{
-	}
+    internal class SinkLineRing : List<IPosition> { }
 }

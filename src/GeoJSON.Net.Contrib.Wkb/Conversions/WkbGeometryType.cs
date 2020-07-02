@@ -9,5 +9,5 @@
         MultiLineString = 5,
         MultiPolygon = 6,
         GeometryCollection = 7
-    };
+    }
 }

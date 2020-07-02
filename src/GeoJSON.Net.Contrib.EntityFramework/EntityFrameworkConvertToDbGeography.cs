@@ -12,7 +12,7 @@ namespace GeoJSON.Net.Contrib.EntityFramework
         {
             return geometryObject.ToDbGeography(4326);
         }
-        
+
         public static DbGeography ToDbGeography(this IGeometryObject geometryObject, int coordinateSystemId = 4326)
         {
             return DbGeography.FromBinary(WkbEncode.Encode(geometryObject), coordinateSystemId);

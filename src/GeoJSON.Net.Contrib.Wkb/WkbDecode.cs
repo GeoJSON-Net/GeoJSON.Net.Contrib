@@ -17,7 +17,7 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
         {
             var v_pos = 0;
             return ParseShape(wkb, ref v_pos);
-        }        
+        }
 
         private static Point ParsePoint(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
@@ -39,7 +39,7 @@ namespace GeoJSON.Net.Contrib.Wkb.Conversions
             Position[] positions = ParsePositions(wkb, ref wkbPosition, hasAltitude);
 
             return new LineString(positions);
-        }        
+        }
 
         private static Polygon ParsePolygon(byte[] wkb, ref int wkbPosition, bool hasAltitude)
         {
