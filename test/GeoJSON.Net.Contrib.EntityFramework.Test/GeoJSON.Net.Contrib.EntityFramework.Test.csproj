@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(DefaultTargetFramework)</TargetFramework>
+    <TargetFramework>$(DefaultTargetFrameworkForTests)</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
