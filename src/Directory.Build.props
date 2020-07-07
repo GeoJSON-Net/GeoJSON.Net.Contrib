@@ -24,6 +24,7 @@ https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#assemblyinfo-propertie
     <IsTestProject>False</IsTestProject>
     <IsTestProject Condition=" $(MSBuildProjectName.EndsWith('.Test')) ">True</IsTestProject>
     <DefaultTargetFramework>net45</DefaultTargetFramework>
+    <DefaultTargetFrameworkForTests>net452</DefaultTargetFrameworkForTests><!-- xunit test runner 2.4.2 requires at least .NET 4.5.2 -->
     <!--
 
     NuGet package properties
